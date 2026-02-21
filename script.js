@@ -58,6 +58,8 @@ document.getElementById("hard-btn").onclick = () => {
 };
 document.getElementById("back-to-title-btn").onclick = () =>
   showScreen("title-screen");
+document.getElementById("nickname-to-title-btn").onclick = () =>
+  showScreen("title-screen");
 document.getElementById("back-to-mode-btn").onclick = () =>
   showScreen("mode-screen");
 document.getElementById("back-to-mode-btn2").onclick = () =>
@@ -241,7 +243,6 @@ function renderSuspects() {
   answersDiv.innerHTML = "";
 
   suspects.forEach((suspect, idx) => {
-
     const isDisabled = disabledSuspects[idx];
     const isChecked = checkedSuspects[idx];
     const shouldFlip = isDisabled || isChecked;
@@ -307,8 +308,6 @@ function renderSuspects() {
     answersDiv.appendChild(wrapper);
   });
 }
-
-
 
 // --- Ask Question Logic (Handles All Tiers) ---
 function askQuestion(qObj, btn) {
@@ -623,13 +622,13 @@ function getClue(questionText, suspectIdx) {
 // --- Guess Suspect Logic ---
 function guessSuspect(idx) {
   if (gameOver || attempts <= 0) return;
-  
+
   let endTime = Date.now();
-  
+
   const cardButton = document.querySelectorAll(".suspect-card")[idx];
-  
+
   if (!cardButton) return;
-  
+
   if (idx === correctSuspectIndex) {
     attempts -= 1;
     gameOver = true;
@@ -638,7 +637,7 @@ function guessSuspect(idx) {
     sendGameData(); // or whatever you use to send results
   } else {
     attempts -= 1;
-        // Add shake animation
+    // Add shake animation
     cardButton.classList.add("shake");
 
     setTimeout(() => {
@@ -647,14 +646,14 @@ function guessSuspect(idx) {
       renderSuspects();
       updateAttempts();
     }, 400);
-      if (attempts <= 0) {
-        gameOver = true;
-        gameResult = "0";
-        showEndScreen(false); // lose
-        sendGameData();
-      } else {
-        attemptsDiv.textContent = `Attempts left: ${attempts} Sorry, wrong suspect! `;
-      }
+    if (attempts <= 0) {
+      gameOver = true;
+      gameResult = "0";
+      showEndScreen(false); // lose
+      sendGameData();
+    } else {
+      attemptsDiv.textContent = `Attempts left: ${attempts} Sorry, wrong suspect! `;
+    }
   }
 }
 

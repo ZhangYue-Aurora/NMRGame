@@ -1,41 +1,179 @@
 body {
   font-family: Arial, sans-serif;
 }
-#questions {
-  max-height: 200px;
-  overflow-y: auto;
-  margin-bottom: 10px;
+
+#title-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  min-height: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #c0e7ff; /* light blue like your sketch */
+  border-radius: 12px;
+  box-shadow: 0 0 10px #8bb6da;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
-#clues {
-  margin-top: 10px;
-  max-height: 120px;
-  overflow-y: auto;
-  background: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 8px;
-  border-radius: 8px;
-}
-.question-btn,
-.answer-btn {
-  display: block;
-  margin: 5px 0;
+.title-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  transition: background 0.2s;
 }
-#answers {
-  margin-top: 20px;
-}
-button {
+.title-buttons button {
   font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 2px solid #2a6fb8;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  margin: 10px 0;
+  width: 220px;
+  max-width: 90vw;
+  box-sizing: border-box;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
+.title-buttons button:hover {
+  background: #e0f1ff;
+  transform: translateY(-1px);
+}
+
+#title-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  margin-bottom: 36px; /* space below the image */
+  max-width: 90%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(42, 111, 184, 0.18));
+}
+
+#nickname-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  min-height: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #c0e7ff; /* light blue like your sketch */
+  border-radius: 12px;
+  box-shadow: 0 0 10px #8bb6da;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+.nickname-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.nickname-buttons button {
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 2px solid #2a6fb8;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  margin: 10px 0;
+  width: 220px;
+  max-width: 90vw;
+  box-sizing: border-box;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.nickname-buttons button:hover {
+  background: #e0f1ff;
+  transform: translateY(-1px);
+}
+
+#nickname-input {
+  display: block;
+  margin: 0 auto 0px auto;
+  font-size: 1.1em;
+  padding: 10px 16px;
+  border-radius: 2px;
+  border: 2px solid #2a6fb8;
+  width: 240px;
+  max-width: 90vw;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#nickname-screen h2 {
+  margin-bottom: 32px;
+  font-size: 1.8em;
+  color: #2a6fb8;
+  text-align: center;
+}
+
+#mode-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  min-height: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #c0e7ff; /* light blue like your sketch */
+  border-radius: 12px;
+  box-shadow: 0 0 10px #8bb6da;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+.mode-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.mode-buttons button {
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 2px solid #2a6fb8;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  margin: 10px 0;
+  width: 220px;
+  max-width: 90vw;
+  box-sizing: border-box;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.mode-buttons button:hover {
+  background: #e0f1ff;
+  transform: translateY(-1px);
+}
+
+#mode-screen h2 {
+  margin-bottom: 32px;
+  font-size: 1.8em;
+  color: #2a6fb8;
+  text-align: center;
+}
+
 #title-screen,
 #nickname-screen,
 #leaderboard-screen,
-#mode-screen,
 #end-screen,
 /* Overall game container */
+
 #game-screen {
-  max-width: 1100px;
+  max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
   padding: 20px;
@@ -65,7 +203,7 @@ button {
 #suspects-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 8px;
 }
 
 /* wrapper */
@@ -99,7 +237,7 @@ button {
   position: relative;
   will-change: transform;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
 /* FLIP */
@@ -153,12 +291,24 @@ button {
 
 /* Shake animation */
 @keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .suspect-card.shake {
@@ -255,23 +405,33 @@ button {
   box-shadow: none;
 }
 .question-btn.primary {
-  background: #9dbfe5;
-  border-color: #789ace;
+  background: #b2bfe5;
+  border-color: #939ace;
   font-weight: bold;
 }
 .question-btn.primary:hover {
-  background: #789ace;
+  background: #939ace;
   transform: translateY(-1px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 .question-btn.secondary {
-  background: #b0e3ed;
-  border-color: #66b2c0;
+  background: #8cbfe5;
+  border-color: #6f9ace;
+  font-style: italic;
+}
+.question-btn.secondary:hover {
+  background: #6f9ace;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 .question-btn.tertiary {
-  background: #fffbe6;
-  border-color: #ffc107;
-  font-style: italic;
+  background: #a0dec9;
+  border-color: #66aaa9;
+}
+.question-btn.tertiary:hover {
+  background: #66b2c0;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Bottom controls */
