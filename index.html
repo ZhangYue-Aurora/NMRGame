@@ -4,7 +4,6 @@
   <head>
     <meta charset="UTF-8">
     <title>NMR Game</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
 
   </head>
@@ -35,13 +34,86 @@
 
 <!-- Main Game Screen -->
 <div id="game-screen" style="display:none;">
-  <div id="questions"></div>
-  <div id="answers"></div>
-  <div id="clues"></div>
-  <div id="score"></div>
-  <div id="timer"></div>
-  <button id="replay-btn">Replay Game</button>
-  <button id="back-to-mode-btn">Back</button>
+  <div class="game-layout">
+
+    <!-- LEFT SIDE: suspects + attempts + clues -->
+    <div class="left-panel">
+      <div id="suspects-grid">
+        <!-- 8 suspect buttons, each with an image -->
+        <button class="suspect-btn" data-suspect-id="1">
+          <div class="suspect-card-inner">
+            <img src="images/suspect1-front.png" alt="Suspect 1" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+        <button class="suspect-btn" data-suspect-id="2">
+          <div class="suspect-card-inner">
+            <img src="images/suspect2-front.png" alt="Suspect 2" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+        <button class="suspect-btn" data-suspect-id="3">
+          <div class="suspect-card-inner">
+            <img src="images/suspect3-front.png" alt="Suspect 3" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+        <button class="suspect-btn" data-suspect-id="4">
+          <div class="suspect-card-inner">
+            <img src="images/suspect4-front.png" alt="Suspect 4" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+        <button class="suspect-btn" data-suspect-id="5">
+          <div class="suspect-card-inner">
+            <img src="images/suspect6-front.png" alt="Suspect 6" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+        <button class="suspect-btn" data-suspect-id="6">
+          <div class="suspect-card-inner">
+            <img src="images/suspect6-front.png" alt="Suspect 6" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+        <button class="suspect-btn" data-suspect-id="7">
+          <div class="suspect-card-inner">
+            <img src="images/suspect7-front.png" alt="Suspect 7" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+        <button class="suspect-btn" data-suspect-id="8">
+          <div class="suspect-card-inner">
+            <img src="images/suspect8-front.png" alt="Suspect 8" class="suspect-front">
+            <img src="images/card-back.png" alt="Card back" class="suspect-back">
+          </div>
+        </button>
+      </div>
+
+      <div id="attempts-wrapper">
+        <div id="attempts"></div>
+      </div>
+
+      <div id="clues-wrapper">
+        <div id="clues"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: timer + score + questions -->
+    <div class="right-panel">
+      <div class="top-info">
+        <div id="timer"></div>
+        <div id="score"></div>
+      </div>
+      <div id="questions"></div>
+    </div>
+  </div>
+
+  <!-- Bottom buttons (can be repositioned later) -->
+  <div class="bottom-controls">
+    <button id="replay-btn">Replay Game</button>
+    <button id="back-to-mode-btn">Back</button>
+  </div>
 </div>
 
 <!-- Leaderboard Screen -->

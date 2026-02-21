@@ -33,49 +33,251 @@ button {
 #leaderboard-screen,
 #mode-screen,
 #end-screen,
+/* Overall game container */
 #game-screen {
-  max-width: 500px;
-  margin: 40px auto;
+  max-width: 1100px;
+  min-height: 600px;
+  margin: 20px auto;
   padding: 20px;
+  background: #c0e7ff; /* light blue like your sketch */
   border-radius: 12px;
-  box-shadow: 0 0 10px #ccc;
-  background: #fafafa;
+  box-shadow: 0 0 10px #8bb6da;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
+
+/* Two-column main layout */
+.game-layout {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr; /* left : right width ratio */
+  gap: 20px;
+}
+
+/* LEFT PANEL: suspects + attempts + clues */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 2 rows × 4 columns suspect grid */
+#suspects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(120px, 1fr); /* card height */
+  gap: 6px;
+}
+
+/* suspect buttons: large white rectangles with image inside */
+/* clickable card */
+.suspect-btn {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  perspective: 1000px; /* for 3D flip */
+}
+.suspect-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* inner element that rotates */
+.suspect-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+/* both faces fill the card */
+.suspect-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 3px solid #2a6fb8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backface-visibility: hidden;
+}
+.suspect-face img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+/* front + back orientations */
+.suspect-front {
+  transform: rotateY(0deg);
+}
+.suspect-back {
+  transform: rotateY(180deg);
+}
+
+/* When disabled: rotate card to show back */
+.suspect-btn.disabled.suspect-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* disabled state: no hover “lift” */
+.suspect-btn.disabled {
+  cursor: default;
+}
+.suspect-btn.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Attempts above clues */
+#attempts-wrapper {
+  font-size: 18px;
+  font-weight: 600;
+  color: #154d7f;
+}
+
+/* Clues area below suspects */
+#clues-wrapper {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 2px solid #2a6fb8;
+  padding: 10px;
+  height: 165px;
+  overflow-y: auto;
+}
+
+#clues {
+  font-size: 16px;
+  background: #ffffff;
+}
+
+/* RIGHT PANEL: timer + score + questions */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* timer + score row at top */
+.top-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #154d7f;
+}
+
+#timer {
+  padding: 6px 12px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 2px solid #2a6fb8;
+  font-family: "Courier New", monospace; /* timer feel */
+}
+
+#score {
+  font-size: 18px;
+}
+
+/* question list */
+#questions {
+  flex: 1;
+  max-height: 470px; /* let flex control */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* individual question buttons */
+.question-btn {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: left;
+
+  background: #8ab1dc;
+  color: #183e70;
+  border-radius: 10px;
+  border: 3px solid #2a6fb8;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.question-btn:hover {
+  background: #67a2dd;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* your existing “state” classes can still be used */
 .question-btn.greyed {
   background: #bbb;
   color: #444;
   cursor: default;
+  box-shadow: none;
 }
 .question-btn.primary {
-  background: #e0f0ff;
-  border: 2px solid #2196f3;
+  background: #9dbfe5;
+  border-color: #789ace;
   font-weight: bold;
 }
+.question-btn.primary:hover {
+  background: #789ace;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
 .question-btn.secondary {
-  background: #eafbe7;
-  border: 2px solid #43a047;
+  background: #b0e3ed;
+  border-color: #66b2c0;
 }
 .question-btn.tertiary {
   background: #fffbe6;
-  border: 2px solid #ffc107;
+  border-color: #ffc107;
   font-style: italic;
 }
-.suspect-btn.checked {
-  background: #ccc;
-  color: #888;
-  cursor: not-allowed;
-  border: 2px dashed #888;
+
+/* Bottom controls */
+.bottom-controls {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
 }
+.bottom-controls button {
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 2px solid #2a6fb8;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.bottom-controls button:hover {
+  background: #e0f1ff;
+  transform: translateY(-1px);
+}
+
+/* Keep your checkboxes a bit larger if you still use them */
 .suspect-checkbox {
   margin-right: 10px;
   transform: scale(1.2);
   vertical-align: middle;
-}
-.suspect-btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
 }
 #end-stars {
   font-size: 2.2em;

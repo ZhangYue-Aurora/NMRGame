@@ -198,13 +198,15 @@ let questionSequence = [];
 let gameResult = "";
 let starsEarned = 0;
 let attempts = 3;
+let disabledSuspects = [];
 
 // --- UI Elements ---
 const questionsDiv = document.getElementById("questions");
-const answersDiv = document.getElementById("answers");
+const answersDiv = document.getElementById("suspects-grid");
 const cluesDiv = document.getElementById("clues");
 const scoreDiv = document.getElementById("score");
 const timerDiv = document.getElementById("timer");
+const attemptsDiv = document.getElementById("attempts");
 const replayBtn = document.getElementById("replay-btn");
 
 // --- Helper: Add Questions to Available If Not Already There ---
@@ -238,43 +240,55 @@ function renderQuestions() {
 let checkedSuspects = Array(suspects.length).fill(false);
 
 function renderSuspects() {
+  // answersDiv is your container on the LEFT now
   answersDiv.innerHTML = "";
+
   suspects.forEach((suspect, idx) => {
-    // Create a container for button + checkbox
-    const wrapper = document.createElement("div");
-    wrapper.style.display = "flex";
-    wrapper.style.alignItems = "center";
-    wrapper.style.marginBottom = "8px";
+    const isDisabled = disabledSuspects[idx] || checkedSuspects[idx];
 
-    // Create the checkbox
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.className = "suspect-checkbox";
-    checkbox.checked = checkedSuspects[idx];
-
-    // Checkbox logic
-    checkbox.onchange = function () {
-      checkedSuspects[idx] = checkbox.checked;
-      renderSuspects(); // Re-render to update button state
-    };
-
-    // Create the suspect button
+    // Outer card element – this will be placed in the suspects grid
     const btn = document.createElement("button");
-    btn.textContent = suspect.name;
-    btn.className = "answer-btn suspect-btn";
-    if (checkedSuspects[idx]) {
-      btn.classList.add("checked");
+    btn.className = "suspect-btn";
+    btn.dataset.suspectId = idx; // you can use idx directly
+
+    // Inner structure for 3D flip
+    const inner = document.createElement("div");
+    inner.className = "suspect-card-inner";
+
+    // FRONT face
+    const front = document.createElement("div");
+    front.className = "suspect-face suspect-front";
+    const frontImg = document.createElement("img");
+    frontImg.src = suspect.image; // <-- use suspect front image
+    frontImg.alt = suspect.name || "Suspect";
+    front.appendChild(frontImg);
+
+    // BACK face (shared card-back image)
+    const back = document.createElement("div");
+    back.className = "suspect-face suspect-back";
+    const backImg = document.createElement("img");
+    backImg.src = "images/card-back.png"; // <-- your card back image
+    backImg.alt = "Card back";
+    back.appendChild(backImg);
+
+    // Assemble faces into inner
+    inner.appendChild(front);
+    inner.appendChild(back);
+
+    // Add inner to button
+    btn.appendChild(inner);
+
+    // If disabled, mark it so CSS flips card and we block clicks
+    if (isDisabled) {
+      btn.classList.add("disabled");
       btn.disabled = true;
     } else {
       btn.disabled = false;
-      btn.onclick = () => guessSuspect(idx);
+      btn.onclick = () => guessSuspect(idx); // your existing logic
     }
 
-    // Put checkbox and button in the wrapper
-    wrapper.appendChild(checkbox);
-    wrapper.appendChild(btn);
-
-    answersDiv.appendChild(wrapper);
+    // Append to container
+    answersDiv.appendChild(btn);
   });
 }
 
@@ -595,19 +609,23 @@ function guessSuspect(idx) {
   let endTime = Date.now();
 
   if (idx === correctSuspectIndex) {
+    attempts -= 1;
     gameOver = true;
     gameResult = "1";
     showEndScreen(true); // win
     sendGameData(); // or whatever you use to send results
   } else {
     attempts -= 1;
+    disabledSuspects[idx] = true;
+    renderSuspects();
+    updateAttempts();
     if (attempts <= 0) {
       gameOver = true;
       gameResult = "0";
       showEndScreen(false); // lose
       sendGameData();
     } else {
-      scoreDiv.textContent = `Wrong suspect! Attempts left: ${attempts}`;
+      attemptsDiv.textContent = `Attempts left: ${attempts} Sorry, wrong suspect! `;
     }
   }
 }
@@ -634,6 +652,11 @@ function updateTimer() {
 }
 setInterval(updateTimer, 100);
 
+// --- Update Attempts ---
+function updateAttempts() {
+  attemptsDiv.textContent = `Attempts left: ${attempts} Click any card to take a guess!`;
+}
+
 // --- Replay Button Logic ---
 replayBtn.onclick = () => startGame();
 
@@ -646,16 +669,20 @@ function startGame() {
   startTime = Date.now();
   scoreDiv.textContent = "";
   timerDiv.textContent = "";
+  attemptsDiv.textContent = "";
   cluesDiv.innerHTML = "";
   // Only primary questions at start
   availableQuestions = questions.map((q) => ({ ...q, unlocks: q.unlocks }));
   correctSuspectIndex = Math.floor(Math.random() * suspects.length);
   checkedSuspects = Array(suspects.length).fill(false);
+  disabledSuspects = Array(suspects.length).fill(false);
   questionSequence = [];
 
   renderQuestions();
   renderSuspects();
   updateClues();
+  updateScore();
+  updateAttempts();
 }
 
 // !!End Stars Screen!!
