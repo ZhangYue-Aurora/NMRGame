@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>NMR Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!-- Title Screen -->
+<div id="title-screen">
+  <h1>Clue Game</h1>
+  <button id="start-btn">Start</button>
+</div>
+
+<!-- Nickname Screen -->
+<div id="nickname-screen" style="display:none;">
+  <h2>Enter Your Nickname</h2>
+  <input id="nickname-input" type="text" maxlength="20" placeholder="Your nickname" style="font-size:16px; padding:8px;">
+  <br><br>
+  <button id="nickname-submit-btn">Continue</button>
+</div>
+
+<!-- Mode Selection Screen -->
+<div id="mode-screen" style="display:none;">
+  <h2>Select Difficulty/Mode</h2>
+  <button id="easy-btn">Easy</button>
+  <button id="hard-btn">Hard</button>
+  <button id="leaderboard-btn">Leaderboard</button>
+  <button id="back-to-title-btn">Back</button>
+</div>
+
+<!-- Main Game Screen -->
+<div id="game-screen" style="display:none;">
+  <div id="questions"></div>
+  <div id="answers"></div>
+  <div id="clues"></div>
+  <div id="score"></div>
+  <div id="timer"></div>
+  <button id="replay-btn">Replay Game</button>
+  <button id="back-to-mode-btn">Back</button>
+</div>
+
+<!-- Leaderboard Screen -->
+<div id="leaderboard-screen" style="display:none;">
+  <h2>Leaderboard (Top 10)</h2>
+  <div id="leaderboard"></div>
+  <button id="back-to-mode-btn2">Back</button>
+</div>
+
+<!-- End Screen -->
+<div id="end-screen" style="display:none;">
+  <h2>Round Finished!</h2>
+  <div id="end-stars"></div>
+  <div id="end-summary"></div>
+  <button id="end-replay-btn">Play Again</button>
+  <button id="end-leaderboard-btn">View Leaderboard</button>
+  <button id="end-mode-btn">Mode Selection</button>
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+}
+#questions {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+#clues {
+  margin-top: 10px;
+  max-height: 120px;
+  overflow-y: auto;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+}
+.question-btn,
+.answer-btn {
+  display: block;
+  margin: 5px 0;
+  width: 100%;
+  transition: background 0.2s;
+}
+#answers {
+  margin-top: 20px;
+}
+button {
+  font-size: 16px;
+}
+#title-screen,
+#nickname-screen,
+#leaderboard-screen,
+#mode-screen,
+#end-screen,
+#game-screen {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ccc;
+  background: #fafafa;
+}
+.question-btn.greyed {
+  background: #bbb;
+  color: #444;
+  cursor: default;
+}
+.question-btn.primary {
+  background: #e0f0ff;
+  border: 2px solid #2196f3;
+  font-weight: bold;
+}
+.question-btn.secondary {
+  background: #eafbe7;
+  border: 2px solid #43a047;
+}
+.question-btn.tertiary {
+  background: #fffbe6;
+  border: 2px solid #ffc107;
+  font-style: italic;
+}
+.suspect-btn.checked {
+  background: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  border: 2px dashed #888;
+}
+.suspect-checkbox {
+  margin-right: 10px;
+  transform: scale(1.2);
+  vertical-align: middle;
+}
+.suspect-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+#end-stars {
+  font-size: 2.2em;
+  color: gold;
+  margin: 12px 0;
+}
