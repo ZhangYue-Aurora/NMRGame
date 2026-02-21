@@ -65,11 +65,10 @@ button {
 #suspects-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(120px, 1fr); /* card height */
-  gap: 6px;
+  gap: 10px;
 }
 
-/* wrapper for each suspect: card on top, checkbox beneath */
+/* wrapper */
 .suspect-card-wrapper {
   display: flex;
   flex-direction: column;
@@ -77,76 +76,65 @@ button {
   gap: 6px;
 }
 
-/* suspect buttons: large white rectangles with image inside */
-/* the visual card button */
+/* card button */
 .suspect-card {
-  position: relative;
   width: 100px;
   height: 130px;
-  padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  perspective: 1000px; /* 3D flip */
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.suspect-card:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  perspective: 1000px;
+  padding: 0;
 }
 
-/* inner rotator */
+.suspect-card:disabled {
+  cursor: default;
+}
+
+/* inner rotating element */
 .suspect-card-inner {
-  position: relative;
   width: 100%;
   height: 100%;
+  position: relative;
   transform-style: preserve-3d;
   transition: transform 0.4s ease;
 }
 
-/* two faces */
+/* FLIP RULE (FIXED) */
+.suspect-card.flipped .suspect-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* faces */
 .suspect-face {
   position: absolute;
   inset: 0;
+  backface-visibility: hidden;
   border-radius: 8px;
-  background: #ffffff;
   border: 3px solid #2a6fb8;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  backface-visibility: hidden;
 }
+
 .suspect-face img {
   width: 90%;
   height: 90%;
   object-fit: contain;
 }
 
-/* orientations */
 .suspect-front {
   transform: rotateY(0deg);
 }
+
 .suspect-back {
   transform: rotateY(180deg);
 }
 
-/* flipped state: show back */
-.suspect-card.flipped.suspect-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* avoid hover lift when disabled */
-.suspect-card:disabled {
-  cursor: default;
-}
-.suspect-card:disabled:hover {
-  transform: none;
-  box-shadow: none;
-}
 .suspect-checkbox {
-  transform: scale(1.2); /* make it easier to tap */
+  transform: scale(1.2);
 }
-
 /* Attempts above clues */
 #attempts-wrapper {
   font-size: 18px;
