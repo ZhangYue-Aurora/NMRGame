@@ -174,14 +174,14 @@ const questions = [
 
 // Suspects (final answer)
 const suspects = [
-  { name: "The janitor" },
-  { name: "The librarian" },
-  { name: "It was an accident" },
-  { name: "The student" },
-  { name: "The teacher" },
-  { name: "It was a setup" },
-  { name: "The security guard" },
-  { name: "Nobody" }
+  { name: "The janitor", image: "images/suspect1-front.jpg" },
+  { name: "The librarian", image: "images/suspect2-front.jpg" },
+  { name: "It was an accident", image: "images/suspect3-front.jpg" },
+  { name: "The student", image: "images/suspect4-front.jpg" },
+  { name: "The teacher", image: "images/suspect5-front.jpg" },
+  { name: "It was a setup", image: "images/suspect6-front.jpg" },
+  { name: "The security guard", image: "images/suspect7-front.jpg" },
+  { name: "Nobody", image: "images/suspect8-front.jpg" }
 ];
 
 let difficulty = "easy"; // for future expansion
@@ -240,55 +240,72 @@ function renderQuestions() {
 let checkedSuspects = Array(suspects.length).fill(false);
 
 function renderSuspects() {
-  // answersDiv is your container on the LEFT now
   answersDiv.innerHTML = "";
 
   suspects.forEach((suspect, idx) => {
-    const isDisabled = disabledSuspects[idx] || checkedSuspects[idx];
+    const isDisabled = !!disabledSuspects[idx]; // wrong guess, permanent
+    const isChecked = !!checkedSuspects[idx]; // user marking, toggle
+    const shouldShowBack = isDisabled || isChecked;
 
-    // Outer card element – this will be placed in the suspects grid
-    const btn = document.createElement("button");
-    btn.className = "suspect-btn";
-    btn.dataset.suspectId = idx; // you can use idx directly
+    // --- Wrapper: card + checkbox (keeps your structure idea) ---
+    const wrapper = document.createElement("div");
+    wrapper.className = "suspect-card-wrapper";
 
-    // Inner structure for 3D flip
+    // --- Card (replaces your old text button) ---
+    const cardButton = document.createElement("button");
+    cardButton.className = "suspect-card";
+    cardButton.dataset.suspectIndex = idx;
+
     const inner = document.createElement("div");
     inner.className = "suspect-card-inner";
 
-    // FRONT face
+    // FRONT face (suspect image or name)
     const front = document.createElement("div");
     front.className = "suspect-face suspect-front";
     const frontImg = document.createElement("img");
-    frontImg.src = suspect.image; // <-- use suspect front image
+    frontImg.src = suspect.image; // <-- add image field to suspects
     frontImg.alt = suspect.name || "Suspect";
     front.appendChild(frontImg);
 
-    // BACK face (shared card-back image)
+    // BACK face (card-back image)
     const back = document.createElement("div");
     back.className = "suspect-face suspect-back";
     const backImg = document.createElement("img");
-    backImg.src = "images/card-back.png"; // <-- your card back image
+    backImg.src = "images/card-back.png"; // <-- your back-of-card art
     backImg.alt = "Card back";
     back.appendChild(backImg);
 
-    // Assemble faces into inner
     inner.appendChild(front);
     inner.appendChild(back);
+    cardButton.appendChild(inner);
 
-    // Add inner to button
-    btn.appendChild(inner);
-
-    // If disabled, mark it so CSS flips card and we block clicks
-    if (isDisabled) {
-      btn.classList.add("disabled");
-      btn.disabled = true;
+    // Apply state logic to card
+    if (shouldShowBack) {
+      cardButton.classList.add("flipped");
+      cardButton.disabled = true; // cannot click if checked or disabled
     } else {
-      btn.disabled = false;
-      btn.onclick = () => guessSuspect(idx); // your existing logic
+      cardButton.disabled = false;
+      cardButton.onclick = () => guessSuspect(idx);
     }
 
-    // Append to container
-    answersDiv.appendChild(btn);
+    // --- Checkbox (user-togglable only) ---
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "suspect-checkbox";
+    checkbox.checked = isChecked; // only tracks checkedSuspects
+
+    checkbox.onchange = function () {
+      // user can toggle their own marking
+      checkedSuspects[idx] = checkbox.checked;
+      // do NOT touch disabledSuspects here – those come only from wrong guesses
+      renderSuspects(); // re-render to update flip
+    };
+
+    // Put checkbox and card in wrapper
+    wrapper.appendChild(cardButton);
+    wrapper.appendChild(checkbox);
+
+    answersDiv.appendChild(wrapper);
   });
 }
 
@@ -647,7 +664,7 @@ function updateTimer() {
     document.getElementById("game-screen").style.display === "block"
   ) {
     let elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-    timerDiv.textContent = `Time: ${elapsed} seconds`;
+    timerDiv.textContent = `Timer: ${elapsed} s`;
   }
 }
 setInterval(updateTimer, 100);
