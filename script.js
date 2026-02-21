@@ -244,24 +244,22 @@ function renderSuspects() {
 
     const isDisabled = disabledSuspects[idx];
     const isChecked = checkedSuspects[idx];
-    const shouldShowBack = isDisabled || isChecked;
+    const shouldFlip = isDisabled || isChecked;
 
     const wrapper = document.createElement("div");
     wrapper.className = "suspect-card-wrapper";
 
     const cardButton = document.createElement("button");
     cardButton.className = "suspect-card";
-    cardButton.dataset.suspectIndex = idx;
 
-    if (shouldShowBack) {
+    if (shouldFlip) {
       cardButton.classList.add("flipped");
     }
 
     if (isDisabled || isChecked) {
-      cardButton.disabled = true; // permanent
+      cardButton.disabled = true;
     } else {
-      cardButton.disabled = false;
-      cardButton.onclick = () => guessSuspect(idx);
+      cardButton.onclick = () => guessSuspect(idx, cardButton);
     }
 
     const inner = document.createElement("div");
@@ -292,9 +290,16 @@ function renderSuspects() {
     checkbox.className = "suspect-checkbox";
     checkbox.checked = isChecked;
 
+    /* Disable checkbox permanently if wrong guess */
+    if (isDisabled) {
+      checkbox.disabled = true;
+    }
+
     checkbox.onchange = function () {
-      checkedSuspects[idx] = checkbox.checked;
-      renderSuspects();
+      if (!disabledSuspects[idx]) {
+        checkedSuspects[idx] = checkbox.checked;
+        renderSuspects();
+      }
     };
 
     wrapper.appendChild(cardButton);
@@ -302,6 +307,8 @@ function renderSuspects() {
     answersDiv.appendChild(wrapper);
   });
 }
+
+
 
 // --- Ask Question Logic (Handles All Tiers) ---
 function askQuestion(qObj, btn) {
@@ -616,9 +623,13 @@ function getClue(questionText, suspectIdx) {
 // --- Guess Suspect Logic ---
 function guessSuspect(idx) {
   if (gameOver || attempts <= 0) return;
-
+  
   let endTime = Date.now();
-
+  
+  const cardButton = document.querySelectorAll(".suspect-card")[idx];
+  
+  if (!cardButton) return;
+  
   if (idx === correctSuspectIndex) {
     attempts -= 1;
     gameOver = true;
@@ -627,17 +638,23 @@ function guessSuspect(idx) {
     sendGameData(); // or whatever you use to send results
   } else {
     attempts -= 1;
-    disabledSuspects[idx] = true;
-    renderSuspects();
-    updateAttempts();
-    if (attempts <= 0) {
-      gameOver = true;
-      gameResult = "0";
-      showEndScreen(false); // lose
-      sendGameData();
-    } else {
-      attemptsDiv.textContent = `Attempts left: ${attempts} Sorry, wrong suspect! `;
-    }
+        // Add shake animation
+    cardButton.classList.add("shake");
+
+    setTimeout(() => {
+      cardButton.classList.remove("shake");
+      disabledSuspects[idx] = true;
+      renderSuspects();
+      updateAttempts();
+    }, 400);
+      if (attempts <= 0) {
+        gameOver = true;
+        gameResult = "0";
+        showEndScreen(false); // lose
+        sendGameData();
+      } else {
+        attemptsDiv.textContent = `Attempts left: ${attempts} Sorry, wrong suspect! `;
+      }
   }
 }
 
