@@ -174,14 +174,14 @@ const questions = [
 
 // Suspects (final answer)
 const suspects = [
-  { name: "The janitor", image: "images/suspect1-front.jpg" },
-  { name: "The librarian", image: "images/suspect2-front.jpg" },
-  { name: "It was an accident", image: "images/suspect3-front.jpg" },
-  { name: "The student", image: "images/suspect4-front.jpg" },
-  { name: "The teacher", image: "images/suspect5-front.jpg" },
-  { name: "It was a setup", image: "images/suspect6-front.jpg" },
-  { name: "The security guard", image: "images/suspect7-front.jpg" },
-  { name: "Nobody", image: "images/suspect8-front.jpg" }
+  { name: "The janitor", image: "images/suspect1-front.png" },
+  { name: "The librarian", image: "images/suspect2-front.png" },
+  { name: "It was an accident", image: "images/suspect3-front.png" },
+  { name: "The student", image: "images/suspect4-front.png" },
+  { name: "The teacher", image: "images/suspect5-front.png" },
+  { name: "It was a setup", image: "images/suspect6-front.png" },
+  { name: "The security guard", image: "images/suspect7-front.png" },
+  { name: "Nobody", image: "images/suspect8-front.png" }
 ];
 
 let difficulty = "easy"; // for future expansion
