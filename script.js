@@ -287,9 +287,18 @@ function renderSuspects() {
     }
 
     checkbox.onchange = function () {
-      if (!disabledSuspects[idx]) {
-        checkedSuspects[idx] = checkbox.checked;
-        renderSuspects();
+      if (disabledSuspects[idx]) return;
+
+      checkedSuspects[idx] = checkbox.checked;
+
+      const cardButton = document.querySelectorAll(".suspect-card")[idx];
+
+      if (checkbox.checked) {
+        cardButton.classList.add("flipped");
+        cardButton.disabled = true;
+      } else {
+        cardButton.classList.remove("flipped");
+        cardButton.disabled = false;
       }
     };
 
@@ -632,8 +641,15 @@ function guessSuspect(idx) {
 
     setTimeout(() => {
       cardButton.classList.remove("shake");
+
+      // 2️⃣ Flip smoothly (no re-render)
+      cardButton.classList.add("flipped");
+      cardButton.disabled = true;
+
+      // 3️⃣ Disable checkbox
+      const checkbox = document.querySelectorAll(".suspect-checkbox")[idx];
+      if (checkbox) checkbox.disabled = true;
       disabledSuspects[idx] = true;
-      renderSuspects();
       updateAttempts();
     }, 400);
     if (attempts <= 0) {
