@@ -56,142 +56,828 @@ document.getElementById("back-to-mode-btn2").onclick = () =>
   showScreen("mode-screen");
 document.getElementById("end-mode-btn").onclick = () =>
   showScreen("mode-screen");
+document.getElementById("leaderboard-prev").onclick = () => {
+  if (!leaderboardDifficulties.length) return;
+
+  currentLeaderboardIndex--;
+  if (currentLeaderboardIndex < 0) {
+    currentLeaderboardIndex = leaderboardDifficulties.length - 1;
+  }
+
+  renderCurrentLeaderboard();
+};
+
+document.getElementById("leaderboard-next").onclick = () => {
+  if (!leaderboardDifficulties.length) return;
+
+  currentLeaderboardIndex++;
+  if (currentLeaderboardIndex >= leaderboardDifficulties.length) {
+    currentLeaderboardIndex = 0;
+  }
+
+  renderCurrentLeaderboard();
+};
 
 // On page load, show the title screen
 showScreen("title-screen");
 
 // --- Game Data: Multi-Tier Questions ---
-const questions = [
-  {
-    text: "Where were you last night?",
-    tier: "primary",
-    unlocks: [
+const gameData = {
+  easy: {
+    questions: [
       {
-        text: "What were you doing there?",
-        tier: "secondary",
+        text: "easy-question-1",
+        tier: "primary",
         unlocks: [
           {
-            text: "Did anything unusual happen?",
-            tier: "tertiary",
-            unlocks: []
+            text: "easy-question-1.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-1.1.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-1.1.2", tier: "tertiary", unlocks: [] }
+            ]
           },
-          { text: "Did you meet anyone?", tier: "tertiary", unlocks: [] }
-        ]
-      },
-      {
-        text: "Did you see anyone there?",
-        tier: "secondary",
-        unlocks: [
-          { text: "Who was it?", tier: "tertiary", unlocks: [] },
-          { text: "Did you talk to them?", tier: "tertiary", unlocks: [] }
-        ]
-      }
-    ]
-  },
-  {
-    text: "Did you see anyone?",
-    tier: "primary",
-    unlocks: [
-      {
-        text: "Who did you see?",
-        tier: "secondary",
-        unlocks: [
-          { text: "What were they doing?", tier: "tertiary", unlocks: [] },
-          { text: "Did they notice you?", tier: "tertiary", unlocks: [] }
-        ]
-      },
-      {
-        text: "Did you talk to them?",
-        tier: "secondary",
-        unlocks: [
-          { text: "What did you talk about?", tier: "tertiary", unlocks: [] },
-          { text: "Did anything stand out?", tier: "tertiary", unlocks: [] }
-        ]
-      }
-    ]
-  },
-  {
-    text: "Did you hear anything strange?",
-    tier: "primary",
-    unlocks: [
-      {
-        text: "What did you hear?",
-        tier: "secondary",
-        unlocks: [
-          { text: "Was it loud or quiet?", tier: "tertiary", unlocks: [] },
           {
-            text: "Did it happen more than once?",
-            tier: "tertiary",
-            unlocks: []
+            text: "easy-question-1.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-1.2.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-1.2.2", tier: "tertiary", unlocks: [] }
+            ]
           }
         ]
       },
       {
-        text: "When did you hear it?",
-        tier: "secondary",
+        text: "easy-question-2",
+        tier: "primary",
         unlocks: [
           {
-            text: "Where were you at the time?",
-            tier: "tertiary",
-            unlocks: []
+            text: "easy-question-2.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-2.1.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-2.1.2", tier: "tertiary", unlocks: [] }
+            ]
           },
-          { text: "Who was nearby?", tier: "tertiary", unlocks: [] }
-        ]
-      }
-    ]
-  },
-  {
-    text: "Who else was around?",
-    tier: "primary",
-    unlocks: [
-      {
-        text: "Did you recognize anyone?",
-        tier: "secondary",
-        unlocks: [
-          { text: "Who did you recognize?", tier: "tertiary", unlocks: [] },
-          { text: "How do you know them?", tier: "tertiary", unlocks: [] }
+          {
+            text: "easy-question-2.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-2.2.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-2.2.2", tier: "tertiary", unlocks: [] }
+            ]
+          }
         ]
       },
       {
-        text: "Did you notice anything suspicious?",
-        tier: "secondary",
+        text: "easy-question-3",
+        tier: "primary",
         unlocks: [
-          { text: "What was suspicious?", tier: "tertiary", unlocks: [] },
-          { text: "Did you report it?", tier: "tertiary", unlocks: [] }
+          {
+            text: "easy-question-3.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-3.1.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-3.1.2", tier: "tertiary", unlocks: [] }
+            ]
+          },
+          {
+            text: "easy-question-3.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-3.2.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-3.2.2", tier: "tertiary", unlocks: [] }
+            ]
+          }
+        ]
+      },
+      {
+        text: "easy-question-4",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "easy-question-4.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-4.1.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-4.1.2", tier: "tertiary", unlocks: [] }
+            ]
+          },
+          {
+            text: "easy-question-4.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "easy-question-4.2.1", tier: "tertiary", unlocks: [] },
+              { text: "easy-question-4.2.2", tier: "tertiary", unlocks: [] }
+            ]
+          }
         ]
       }
+    ],
+    suspects: [
+      { name: "easy-suspect-1", image: "images/suspect1-front.png" },
+      { name: "easy-suspect-2", image: "images/suspect2-front.png" },
+      { name: "easy-suspect-3", image: "images/suspect3-front.png" },
+      { name: "easy-suspect-4", image: "images/suspect4-front.png" },
+      { name: "easy-suspect-5", image: "images/suspect5-front.png" },
+      { name: "easy-suspect-6", image: "images/suspect6-front.png" },
+      { name: "easy-suspect-7", image: "images/suspect7-front.png" },
+      { name: "easy-suspect-8", image: "images/suspect8-front.png" }
+    ]
+  },
+
+  hard: {
+    questions: [
+      {
+        text: "hard-question-1",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "hard-question-1.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-1.1.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-1.1.2", tier: "tertiary", unlocks: [] }
+            ]
+          },
+          {
+            text: "hard-question-1.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-1.2.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-1.2.2", tier: "tertiary", unlocks: [] }
+            ]
+          }
+        ]
+      },
+      {
+        text: "hard-question-2",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "hard-question-2.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-2.1.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-2.1.2", tier: "tertiary", unlocks: [] }
+            ]
+          },
+          {
+            text: "hard-question-2.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-2.2.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-2.2.2", tier: "tertiary", unlocks: [] }
+            ]
+          }
+        ]
+      },
+      {
+        text: "hard-question-3",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "hard-question-3.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-3.1.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-3.1.2", tier: "tertiary", unlocks: [] }
+            ]
+          },
+          {
+            text: "hard-question-3.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-3.2.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-3.2.2", tier: "tertiary", unlocks: [] }
+            ]
+          }
+        ]
+      },
+      {
+        text: "hard-question-4",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "hard-question-4.1",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-4.1.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-4.1.2", tier: "tertiary", unlocks: [] }
+            ]
+          },
+          {
+            text: "hard-question-4.2",
+            tier: "secondary",
+            unlocks: [
+              { text: "hard-question-4.2.1", tier: "tertiary", unlocks: [] },
+              { text: "hard-question-4.2.2", tier: "tertiary", unlocks: [] }
+            ]
+          }
+        ]
+      }
+    ],
+    suspects: [
+      { name: "hard-suspect-1", image: "images/suspect1-front.png" },
+      { name: "hard-suspect-2", image: "images/suspect2-front.png" },
+      { name: "hard-suspect-3", image: "images/suspect3-front.png" },
+      { name: "hard-suspect-4", image: "images/suspect4-front.png" },
+      { name: "hard-suspect-5", image: "images/suspect5-front.png" },
+      { name: "hard-suspect-6", image: "images/suspect6-front.png" },
+      { name: "hard-suspect-7", image: "images/suspect5-front.png" },
+      { name: "hard-suspect-8", image: "images/suspect6-front.png" }
     ]
   }
-];
+}
+const clueTemplates = {
+    easy: {
+    "easy-question-1": [
+      "easy-clue-1-1",
+      "easy-clue-1-2",
+      "easy-clue-1-3",
+      "easy-clue-1-4",
+      "easy-clue-1-5",
+      "easy-clue-1-6",
+      "easy-clue-1-7",
+      "easy-clue-1-8"
+    ],
+    "easy-question-2": [
+      "easy-clue-2-1",
+      "easy-clue-2-2",
+      "easy-clue-2-3",
+      "easy-clue-2-4",
+      "easy-clue-2-5",
+      "easy-clue-2-6",
+      "easy-clue-2-7",
+      "easy-clue-2-8"
+    ],
+    "easy-question-3": [
+      "easy-clue-3-1",
+      "easy-clue-3-2",
+      "easy-clue-3-3",
+      "easy-clue-3-4",
+      "easy-clue-3-5",
+      "easy-clue-3-6",
+      "easy-clue-3-7",
+      "easy-clue-3-8"
+    ],
+    "easy-question-4": [
+      "easy-clue-4-1",
+      "easy-clue-4-2",
+      "easy-clue-4-3",
+      "easy-clue-4-4",
+      "easy-clue-4-5",
+      "easy-clue-4-6",
+      "easy-clue-4-7",
+      "easy-clue-4-8"
+    ],
+    "easy-question-1.1": [
+      "easy-clue-1.1-1",
+      "easy-clue-1.1-2",
+      "easy-clue-1.1-3",
+      "easy-clue-1.1-4",
+      "easy-clue-1.1-5",
+      "easy-clue-1.1-6",
+      "easy-clue-1.1-7",
+      "easy-clue-1.1-8"
+    ],
+    "easy-question-1.2": [
+      "easy-clue-1.2-1",
+      "easy-clue-1.2-2",
+      "easy-clue-1.2-3",
+      "easy-clue-1.2-4",
+      "easy-clue-1.2-5",
+      "easy-clue-1.2-6",
+      "easy-clue-1.2-7",
+      "easy-clue-1.2-8"
+    ],
+    "easy-question-2.1": [
+      "easy-clue-2.1-1",
+      "easy-clue-2.1-2",
+      "easy-clue-2.1-3",
+      "easy-clue-2.1-4",
+      "easy-clue-2.1-5",
+      "easy-clue-2.1-6",
+      "easy-clue-2.1-7",
+      "easy-clue-2.1-8"
+    ],
+    "easy-question-2.2": [
+      "easy-clue-2.2-1",
+      "easy-clue-2.2-2",
+      "easy-clue-2.2-3",
+      "easy-clue-2.2-4",
+      "easy-clue-2.2-5",
+      "easy-clue-2.2-6",
+      "easy-clue-2.2-7",
+      "easy-clue-2.2-8"
+    ],
+    "easy-question-3.1": [
+      "easy-clue-3.1-1",
+      "easy-clue-3.1-2",
+      "easy-clue-3.1-3",
+      "easy-clue-3.1-4",
+      "easy-clue-3.1-5",
+      "easy-clue-3.1-6",
+      "easy-clue-3.1-7",
+      "easy-clue-3.1-8"
+    ],
+    "easy-question-3.2": [
+      "easy-clue-3.2-1",
+      "easy-clue-3.2-2",
+      "easy-clue-3.2-3",
+      "easy-clue-3.2-4",
+      "easy-clue-3.2-5",
+      "easy-clue-3.2-6",
+      "easy-clue-3.2-7",
+      "easy-clue-3.2-8"
+    ],
+    "easy-question-4.1": [
+      "easy-clue-4.1-1",
+      "easy-clue-4.1-2",
+      "easy-clue-4.1-3",
+      "easy-clue-4.1-4",
+      "easy-clue-4.1-5",
+      "easy-clue-4.1-6",
+      "easy-clue-4.1-7",
+      "easy-clue-4.1-8"
+    ],
+    "easy-question-4.2": [
+      "easy-clue-4.2-1",
+      "easy-clue-4.2-2",
+      "easy-clue-4.2-3",
+      "easy-clue-4.2-4",
+      "easy-clue-4.2-5",
+      "easy-clue-4.2-6",
+      "easy-clue-4.2-7",
+      "easy-clue-4.2-8"
+    ],
+    "easy-question-1.1.1": [
+      "easy-clue-1.1.1-1",
+      "easy-clue-1.1.1-2",
+      "easy-clue-1.1.1-3",
+      "easy-clue-1.1.1-4",
+      "easy-clue-1.1.1-5",
+      "easy-clue-1.1.1-6",
+      "easy-clue-1.1.1-7",
+      "easy-clue-1.1.1-8"
+    ],
+    "easy-question-1.1.2": [
+      "easy-clue-1.1.2-1",
+      "easy-clue-1.1.2-2",
+      "easy-clue-1.1.2-3",
+      "easy-clue-1.1.2-4",
+      "easy-clue-1.1.2-5",
+      "easy-clue-1.1.2-6",
+      "easy-clue-1.1.2-7",
+      "easy-clue-1.1.2-8"
+    ],
+    "easy-question-1.2.1": [
+      "easy-clue-1.2.1-1",
+      "easy-clue-1.2.1-2",
+      "easy-clue-1.2.1-3",
+      "easy-clue-1.2.1-4",
+      "easy-clue-1.2.1-5",
+      "easy-clue-1.2.1-6",
+      "easy-clue-1.2.1-7",
+      "easy-clue-1.2.1-8"
+    ],
+    "easy-question-1.2.2": [
+      "easy-clue-1.2.2-1",
+      "easy-clue-1.2.2-2",
+      "easy-clue-1.2.2-3",
+      "easy-clue-1.2.2-4",
+      "easy-clue-1.2.2-5",
+      "easy-clue-1.2.2-6",
+      "easy-clue-1.2.2-7",
+      "easy-clue-1.2.2-8"
+    ],
+    "easy-question-2.1.1": [
+      "easy-clue-2.1.1-1",
+      "easy-clue-2.1.1-2",
+      "easy-clue-2.1.1-3",
+      "easy-clue-2.1.1-4",
+      "easy-clue-2.1.1-5",
+      "easy-clue-2.1.1-6",
+      "easy-clue-2.1.1-7",
+      "easy-clue-2.1.1-8"
+    ],
+    "easy-question-2.1.2": [
+      "easy-clue-2.1.2-1",
+      "easy-clue-2.1.2-2",
+      "easy-clue-2.1.2-3",
+      "easy-clue-2.1.2-4",
+      "easy-clue-2.1.2-5",
+      "easy-clue-2.1.2-6",
+      "easy-clue-2.1.2-7",
+      "easy-clue-2.1.2-8"
+    ],
+    "easy-question-2.2.1": [
+      "easy-clue-2.2.1-1",
+      "easy-clue-2.2.1-2",
+      "easy-clue-2.2.1-3",
+      "easy-clue-2.2.1-4",
+      "easy-clue-2.2.1-5",
+      "easy-clue-2.2.1-6",
+      "easy-clue-2.2.1-7",
+      "easy-clue-2.2.1-8"
+    ],
+    "easy-question-2.2.2": [
+      "easy-clue-2.2.2-1",
+      "easy-clue-2.2.2-2",
+      "easy-clue-2.2.2-3",
+      "easy-clue-2.2.2-4",
+      "easy-clue-2.2.2-5",
+      "easy-clue-2.2.2-6",
+      "easy-clue-2.2.2-7",
+      "easy-clue-2.2.2-8"
+    ],
+    "easy-question-3.1.1": [
+      "easy-clue-3.1.1-1",
+      "easy-clue-3.1.1-2",
+      "easy-clue-3.1.1-3",
+      "easy-clue-3.1.1-4",
+      "easy-clue-3.1.1-5",
+      "easy-clue-3.1.1-6",
+      "easy-clue-3.1.1-7",
+      "easy-clue-3.1.1-8"
+    ],
+    "easy-question-3.1.2": [
+      "easy-clue-3.1.2-1",
+      "easy-clue-3.1.2-2",
+      "easy-clue-3.1.2-3",
+      "easy-clue-3.1.2-4",
+      "easy-clue-3.1.2-5",
+      "easy-clue-3.1.2-6",
+      "easy-clue-3.1.2-7",
+      "easy-clue-3.1.2-8"
+    ],
+    "easy-question-3.2.1": [
+      "easy-clue-3.2.1-1",
+      "easy-clue-3.2.1-2",
+      "easy-clue-3.2.1-3",
+      "easy-clue-3.2.1-4",
+      "easy-clue-3.2.1-5",
+      "easy-clue-3.2.1-6",
+      "easy-clue-3.2.1-7",
+      "easy-clue-3.2.1-8"
+    ],
+    "easy-question-3.2.2": [
+      "easy-clue-3.2.2-1",
+      "easy-clue-3.2.2-2",
+      "easy-clue-3.2.2-3",
+      "easy-clue-3.2.2-4",
+      "easy-clue-3.2.2-5",
+      "easy-clue-3.2.2-6",
+      "easy-clue-3.2.2-7",
+      "easy-clue-3.2.2-8"
+    ],
+    "easy-question-4.1.1": [
+      "easy-clue-4.1.1-1",
+      "easy-clue-4.1.1-2",
+      "easy-clue-4.1.1-3",
+      "easy-clue-4.1.1-4",
+      "easy-clue-4.1.1-5",
+      "easy-clue-4.1.1-6",
+      "easy-clue-4.1.1-7",
+      "easy-clue-4.1.1-8"
+    ],
+    "easy-question-4.1.2": [
+      "easy-clue-4.1.2-1",
+      "easy-clue-4.1.2-2",
+      "easy-clue-4.1.2-3",
+      "easy-clue-4.1.2-4",
+      "easy-clue-4.1.2-5",
+      "easy-clue-4.1.2-6",
+      "easy-clue-4.1.2-7",
+      "easy-clue-4.1.2-8"
+    ],
+    "easy-question-4.2.1": [
+      "easy-clue-4.2.1-1",
+      "easy-clue-4.2.1-2",
+      "easy-clue-4.2.1-3",
+      "easy-clue-4.2.1-4",
+      "easy-clue-4.2.1-5",
+      "easy-clue-4.2.1-6",
+      "easy-clue-4.2.1-7",
+      "easy-clue-4.2.1-8"
+    ],
+    "easy-question-4.2.2": [
+      "easy-clue-4.2.2-1",
+      "easy-clue-4.2.2-2",
+      "easy-clue-4.2.2-3",
+      "easy-clue-4.2.2-4",
+      "easy-clue-4.2.2-5",
+      "easy-clue-4.2.2-6",
+      "easy-clue-4.2.2-7",
+      "easy-clue-4.2.2-8"
+    ]
+    },
+    hard: {
+    "hard-question-1": [
+      "hard-clue-1-1",
+      "hard-clue-1-2",
+      "hard-clue-1-3",
+      "hard-clue-1-4",
+      "hard-clue-1-5",
+      "hard-clue-1-6",
+      "hard-clue-1-7",
+      "hard-clue-1-8"
+    ],
+    "hard-question-2": [
+      "hard-clue-2-1",
+      "hard-clue-2-2",
+      "hard-clue-2-3",
+      "hard-clue-2-4",
+      "hard-clue-2-5",
+      "hard-clue-2-6",
+      "hard-clue-2-7",
+      "hard-clue-2-8"
+    ],
+    "hard-question-3": [
+      "hard-clue-3-1",
+      "hard-clue-3-2",
+      "hard-clue-3-3",
+      "hard-clue-3-4",
+      "hard-clue-3-5",
+      "hard-clue-3-6",
+      "hard-clue-3-7",
+      "hard-clue-3-8"
+    ],
+    "hard-question-4": [
+      "hard-clue-4-1",
+      "hard-clue-4-2",
+      "hard-clue-4-3",
+      "hard-clue-4-4",
+      "hard-clue-4-5",
+      "hard-clue-4-6",
+      "hard-clue-4-7",
+      "hard-clue-4-8"
+    ],
+    "hard-question-1.1": [
+      "hard-clue-1.1-1",
+      "hard-clue-1.1-2",
+      "hard-clue-1.1-3",
+      "hard-clue-1.1-4",
+      "hard-clue-1.1-5",
+      "hard-clue-1.1-6",
+      "hard-clue-1.1-7",
+      "hard-clue-1.1-8"
+    ],
+    "hard-question-1.2": [
+      "hard-clue-1.2-1",
+      "hard-clue-1.2-2",
+      "hard-clue-1.2-3",
+      "hard-clue-1.2-4",
+      "hard-clue-1.2-5",
+      "hard-clue-1.2-6",
+      "hard-clue-1.2-7",
+      "hard-clue-1.2-8"
+    ],
+    "hard-question-2.1": [
+      "hard-clue-2.1-1",
+      "hard-clue-2.1-2",
+      "hard-clue-2.1-3",
+      "hard-clue-2.1-4",
+      "hard-clue-2.1-5",
+      "hard-clue-2.1-6",
+      "hard-clue-2.1-7",
+      "hard-clue-2.1-8"
+    ],
+    "hard-question-2.2": [
+      "hard-clue-2.2-1",
+      "hard-clue-2.2-2",
+      "hard-clue-2.2-3",
+      "hard-clue-2.2-4",
+      "hard-clue-2.2-5",
+      "hard-clue-2.2-6",
+      "hard-clue-2.2-7",
+      "hard-clue-2.2-8"
+    ],
+    "hard-question-3.1": [
+      "hard-clue-3.1-1",
+      "hard-clue-3.1-2",
+      "hard-clue-3.1-3",
+      "hard-clue-3.1-4",
+      "hard-clue-3.1-5",
+      "hard-clue-3.1-6",
+      "hard-clue-3.1-7",
+      "hard-clue-3.1-8"
+    ],
+    "hard-question-3.2": [
+      "hard-clue-3.2-1",
+      "hard-clue-3.2-2",
+      "hard-clue-3.2-3",
+      "hard-clue-3.2-4",
+      "hard-clue-3.2-5",
+      "hard-clue-3.2-6",
+      "hard-clue-3.2-7",
+      "hard-clue-3.2-8"
+    ],
+    "hard-question-4.1": [
+      "hard-clue-4.1-1",
+      "hard-clue-4.1-2",
+      "hard-clue-4.1-3",
+      "hard-clue-4.1-4",
+      "hard-clue-4.1-5",
+      "hard-clue-4.1-6",
+      "hard-clue-4.1-7",
+      "hard-clue-4.1-8"
+    ],
+    "hard-question-4.2": [
+      "hard-clue-4.2-1",
+      "hard-clue-4.2-2",
+      "hard-clue-4.2-3",
+      "hard-clue-4.2-4",
+      "hard-clue-4.2-5",
+      "hard-clue-4.2-6",
+      "hard-clue-4.2-7",
+      "hard-clue-4.2-8"
+    ],
+    "hard-question-1.1.1": [
+      "hard-clue-1.1.1-1",
+      "hard-clue-1.1.1-2",
+      "hard-clue-1.1.1-3",
+      "hard-clue-1.1.1-4",
+      "hard-clue-1.1.1-5",
+      "hard-clue-1.1.1-6",
+      "hard-clue-1.1.1-7",
+      "hard-clue-1.1.1-8"
+    ],
+    "hard-question-1.1.2": [
+      "hard-clue-1.1.2-1",
+      "hard-clue-1.1.2-2",
+      "hard-clue-1.1.2-3",
+      "hard-clue-1.1.2-4",
+      "hard-clue-1.1.2-5",
+      "hard-clue-1.1.2-6",
+      "hard-clue-1.1.2-7",
+      "hard-clue-1.1.2-8"
+    ],
+    "hard-question-1.2.1": [
+      "hard-clue-1.2.1-1",
+      "hard-clue-1.2.1-2",
+      "hard-clue-1.2.1-3",
+      "hard-clue-1.2.1-4",
+      "hard-clue-1.2.1-5",
+      "hard-clue-1.2.1-6",
+      "hard-clue-1.2.1-7",
+      "hard-clue-1.2.1-8"
+    ],
+    "hard-question-1.2.2": [
+      "hard-clue-1.2.2-1",
+      "hard-clue-1.2.2-2",
+      "hard-clue-1.2.2-3",
+      "hard-clue-1.2.2-4",
+      "hard-clue-1.2.2-5",
+      "hard-clue-1.2.2-6",
+      "hard-clue-1.2.2-7",
+      "hard-clue-1.2.2-8"
+    ],
+    "hard-question-2.1.1": [
+      "hard-clue-2.1.1-1",
+      "hard-clue-2.1.1-2",
+      "hard-clue-2.1.1-3",
+      "hard-clue-2.1.1-4",
+      "hard-clue-2.1.1-5",
+      "hard-clue-2.1.1-6",
+      "hard-clue-2.1.1-7",
+      "hard-clue-2.1.1-8"
+    ],
+    "hard-question-2.1.2": [
+      "hard-clue-2.1.2-1",
+      "hard-clue-2.1.2-2",
+      "hard-clue-2.1.2-3",
+      "hard-clue-2.1.2-4",
+      "hard-clue-2.1.2-5",
+      "hard-clue-2.1.2-6",
+      "hard-clue-2.1.2-7",
+      "hard-clue-2.1.2-8"
+    ],
+    "hard-question-2.2.1": [
+      "hard-clue-2.2.1-1",
+      "hard-clue-2.2.1-2",
+      "hard-clue-2.2.1-3",
+      "hard-clue-2.2.1-4",
+      "hard-clue-2.2.1-5",
+      "hard-clue-2.2.1-6",
+      "hard-clue-2.2.1-7",
+      "hard-clue-2.2.1-8"
+    ],
+    "hard-question-2.2.2": [
+      "hard-clue-2.2.2-1",
+      "hard-clue-2.2.2-2",
+      "hard-clue-2.2.2-3",
+      "hard-clue-2.2.2-4",
+      "hard-clue-2.2.2-5",
+      "hard-clue-2.2.2-6",
+      "hard-clue-2.2.2-7",
+      "hard-clue-2.2.2-8"
+    ],
+    "hard-question-3.1.1": [
+      "hard-clue-3.1.1-1",
+      "hard-clue-3.1.1-2",
+      "hard-clue-3.1.1-3",
+      "hard-clue-3.1.1-4",
+      "hard-clue-3.1.1-5",
+      "hard-clue-3.1.1-6",
+      "hard-clue-3.1.1-7",
+      "hard-clue-3.1.1-8"
+    ],
+    "hard-question-3.1.2": [
+      "hard-clue-3.1.2-1",
+      "hard-clue-3.1.2-2",
+      "hard-clue-3.1.2-3",
+      "hard-clue-3.1.2-4",
+      "hard-clue-3.1.2-5",
+      "hard-clue-3.1.2-6",
+      "hard-clue-3.1.2-7",
+      "hard-clue-3.1.2-8"
+    ],
+    "hard-question-3.2.1": [
+      "hard-clue-3.2.1-1",
+      "hard-clue-3.2.1-2",
+      "hard-clue-3.2.1-3",
+      "hard-clue-3.2.1-4",
+      "hard-clue-3.2.1-5",
+      "hard-clue-3.2.1-6",
+      "hard-clue-3.2.1-7",
+      "hard-clue-3.2.1-8"
+    ],
+    "hard-question-3.2.2": [
+      "hard-clue-3.2.2-1",
+      "hard-clue-3.2.2-2",
+      "hard-clue-3.2.2-3",
+      "hard-clue-3.2.2-4",
+      "hard-clue-3.2.2-5",
+      "hard-clue-3.2.2-6",
+      "hard-clue-3.2.2-7",
+      "hard-clue-3.2.2-8"
+    ],
+    "hard-question-4.1.1": [
+      "hard-clue-4.1.1-1",
+      "hard-clue-4.1.1-2",
+      "hard-clue-4.1.1-3",
+      "hard-clue-4.1.1-4",
+      "hard-clue-4.1.1-5",
+      "hard-clue-4.1.1-6",
+      "hard-clue-4.1.1-7",
+      "hard-clue-4.1.1-8"
+    ],
+    "hard-question-4.1.2": [
+      "hard-clue-4.1.2-1",
+      "hard-clue-4.1.2-2",
+      "hard-clue-4.1.2-3",
+      "hard-clue-4.1.2-4",
+      "hard-clue-4.1.2-5",
+      "hard-clue-4.1.2-6",
+      "hard-clue-4.1.2-7",
+      "hard-clue-4.1.2-8"
+    ],
+    "hard-question-4.2.1": [
+      "hard-clue-4.2.1-1",
+      "hard-clue-4.2.1-2",
+      "hard-clue-4.2.1-3",
+      "hard-clue-4.2.1-4",
+      "hard-clue-4.2.1-5",
+      "hard-clue-4.2.1-6",
+      "hard-clue-4.2.1-7",
+      "hard-clue-4.2.1-8"
+    ],
+    "hard-question-4.2.2": [
+      "hard-clue-4.2.2-1",
+      "hard-clue-4.2.2-2",
+      "hard-clue-4.2.2-3",
+      "hard-clue-4.2.2-4",
+      "hard-clue-4.2.2-5",
+      "hard-clue-4.2.2-6",
+      "hard-clue-4.2.2-7",
+      "hard-clue-4.2.2-8"
+    ]
+    }
+  };
 
-// Suspects (final answer)
-const suspects = [
-  { name: "The janitor", image: "images/suspect1-front.png" },
-  { name: "The librarian", image: "images/suspect2-front.png" },
-  { name: "It was an accident", image: "images/suspect3-front.png" },
-  { name: "The student", image: "images/suspect4-front.png" },
-  { name: "The teacher", image: "images/suspect5-front.png" },
-  { name: "It was a setup", image: "images/suspect6-front.png" },
-  { name: "The security guard", image: "images/suspect7-front.png" },
-  { name: "Nobody", image: "images/suspect8-front.png" }
-];
-
-let difficulty = "easy"; // for future expansion
+// for future expansion
 
 // --- Game State ---
 let playerNickname = "";
 let availableQuestions = [];
+let currentQuestions = [];
+let currentSuspects = [];
 let clues = [];
 let questionsAsked = 0;
 let gameOver = false;
 let startTime = Date.now();
-let correctSuspectIndex = Math.floor(Math.random() * suspects.length);
+let correctSuspectIndex = Math.floor(Math.random() * currentSuspects.length);
 let questionSequence = [];
 let gameResult = "";
 let starsEarned = 0;
 let attempts = 3;
-let checkedSuspects = new Array(suspects.length).fill(false);
-let disabledSuspects = new Array(suspects.length).fill(false);
+let checkedSuspects = new Array(currentSuspects.length).fill(false);
+let disabledSuspects = new Array(currentSuspects.length).fill(false);
+let difficulty = "easy"; 
+let leaderboardData = {};
+let leaderboardDifficulties = [];
+let currentLeaderboardIndex = 0;
 
 // --- UI Elements ---
 const questionsDiv = document.getElementById("questions");
@@ -232,7 +918,7 @@ function renderQuestions() {
 function renderSuspects() {
   answersDiv.innerHTML = "";
 
-  suspects.forEach((suspect, idx) => {
+  currentSuspects.forEach((suspect, idx) => {
     const isDisabled = disabledSuspects[idx];
     const isChecked = checkedSuspects[idx];
     const shouldFlip = isDisabled || isChecked;
@@ -340,280 +1026,18 @@ function askQuestion(qObj, btn) {
 
 // --- Get Clue Logic (No suspect name revealed) ---
 function getClue(questionText, suspectIdx) {
-  const clueTemplates = {
-    "Where were you last night?": [
-      "I was cleaning.",
-      "I was shelving books.",
-      "I slipped and fell.",
-      "I was studying.",
-      "I was teaching.",
-      "I was setting things up.",
-      "I was patrolling.",
-      "I was relaxing."
-    ],
-    "What were you doing there?": [
-      "Organizing supplies.",
-      "Reading.",
-      "Walking.",
-      "Writing.",
-      "Explaining.",
-      "Preparing.",
-      "Checking doors.",
-      "Thinking."
-    ],
-    "Did anything unusual happen?": [
-      "Nothing unusual.",
-      "Saw something odd.",
-      "Heard a strange noise.",
-      "Everything was normal.",
-      "Noticed a missing item.",
-      "Someone was nervous.",
-      "Saw a locked door.",
-      "Saw someone running."
-    ],
-    "Did you meet anyone?": [
-      "Met the janitor.",
-      "Met the librarian.",
-      "Met nobody.",
-      "Met the teacher.",
-      "Met the student.",
-      "Met the security guard.",
-      "Met nobody.",
-      "Met nobody."
-    ],
-    "Did you see anyone there?": [
-      "Saw the security guard.",
-      "Saw the janitor.",
-      "Saw nobody.",
-      "Saw the teacher.",
-      "Saw the student.",
-      "Saw the librarian.",
-      "Saw the janitor.",
-      "Saw nobody."
-    ],
-    "Who was it?": [
-      "It was the janitor.",
-      "It was the librarian.",
-      "It was nobody.",
-      "It was the teacher.",
-      "It was the student.",
-      "It was the security guard.",
-      "It was nobody.",
-      "It was nobody."
-    ],
-    "Did you talk to them?": [
-      "Briefly said hello.",
-      "No conversation.",
-      "Didn't talk.",
-      "Had a chat.",
-      "No interaction.",
-      "Just waved.",
-      "No conversation.",
-      "Didn't talk."
-    ],
-    "Did you see anyone?": [
-      "I saw the librarian.",
-      "I saw the janitor.",
-      "I saw nobody.",
-      "I saw the teacher.",
-      "I saw the student.",
-      "I saw the security guard.",
-      "I saw the janitor.",
-      "I saw nobody."
-    ],
-    "Who did you see?": [
-      "Saw the librarian.",
-      "Saw the janitor.",
-      "Saw nobody.",
-      "Saw the teacher.",
-      "Saw the student.",
-      "Saw the security guard.",
-      "Saw the janitor.",
-      "Saw nobody."
-    ],
-    "What were they doing?": [
-      "Shelving books.",
-      "Cleaning.",
-      "Talking.",
-      "Studying.",
-      "Teaching.",
-      "Patrolling.",
-      "Relaxing.",
-      "Nothing."
-    ],
-    "Did they notice you?": [
-      "Yes.",
-      "No.",
-      "Not sure.",
-      "They waved.",
-      "They ignored me.",
-      "They were busy.",
-      "They looked away.",
-      "No."
-    ],
-    "What did you talk about?": [
-      "Talked about work.",
-      "Talked about books.",
-      "Talked about nothing.",
-      "Talked about class.",
-      "Talked about cleaning.",
-      "Talked about security.",
-      "Talked about nothing.",
-      "Talked about nothing."
-    ],
-    "Did anything stand out?": [
-      "Nothing stood out.",
-      "Something was strange.",
-      "Heard a noise.",
-      "Saw a missing item.",
-      "Saw a locked door.",
-      "Saw someone running.",
-      "Saw a broken item.",
-      "Nothing stood out."
-    ],
-    "Did you hear anything strange?": [
-      "I heard footsteps.",
-      "I heard a crash.",
-      "I heard silence.",
-      "I heard laughter.",
-      "I heard a phone ring.",
-      "I heard whispers.",
-      "I heard music.",
-      "I heard nothing."
-    ],
-    "What did you hear?": [
-      "Footsteps.",
-      "Crash.",
-      "Silence.",
-      "Laughter.",
-      "Phone ring.",
-      "Whispers.",
-      "Music.",
-      "Nothing."
-    ],
-    "Was it loud or quiet?": [
-      "Loud.",
-      "Quiet.",
-      "Very quiet.",
-      "Very loud.",
-      "Medium.",
-      "Soft.",
-      "Silent.",
-      "Loud."
-    ],
-    "Did it happen more than once?": [
-      "Yes.",
-      "No.",
-      "Not sure.",
-      "Once.",
-      "Twice.",
-      "Many times.",
-      "Never.",
-      "No."
-    ],
-    "When did you hear it?": [
-      "Around 9pm.",
-      "Around 8pm.",
-      "Quickly after arriving.",
-      "Late at night.",
-      "Early evening.",
-      "Right before leaving.",
-      "After patrol.",
-      "Before relaxing."
-    ],
-    "Where were you at the time?": [
-      "In the library.",
-      "In the hallway.",
-      "In the classroom.",
-      "At home.",
-      "In the office.",
-      "In the storage room.",
-      "In the lounge.",
-      "Outside."
-    ],
-    "Who was nearby?": [
-      "Janitor.",
-      "Librarian.",
-      "Nobody.",
-      "Teacher.",
-      "Student.",
-      "Security guard.",
-      "Nobody.",
-      "Nobody."
-    ],
-    "Who else was around?": [
-      "The security guard was there.",
-      "The student was there.",
-      "Nobody was around.",
-      "The librarian was there.",
-      "The janitor was there.",
-      "The teacher was there.",
-      "The librarian was there.",
-      "Nobody was there."
-    ],
-    "Did you recognize anyone?": [
-      "Recognized the security guard.",
-      "Recognized the student.",
-      "Didn't recognize anyone.",
-      "Recognized the librarian.",
-      "Recognized the janitor.",
-      "Recognized the teacher.",
-      "Recognized the librarian.",
-      "Didn't recognize anyone."
-    ],
-    "Who did you recognize?": [
-      "Janitor.",
-      "Librarian.",
-      "Nobody.",
-      "Teacher.",
-      "Student.",
-      "Security guard.",
-      "Nobody.",
-      "Nobody."
-    ],
-    "How do you know them?": [
-      "From work.",
-      "From school.",
-      "From the library.",
-      "From the classroom.",
-      "From the office.",
-      "From security.",
-      "From cleaning.",
-      "From nowhere."
-    ],
-    "Did you notice anything suspicious?": [
-      "Saw someone acting strange.",
-      "Heard whispers.",
-      "Nothing suspicious.",
-      "Saw someone hiding.",
-      "Saw a broken item.",
-      "Saw a locked door.",
-      "Saw someone running.",
-      "Nothing suspicious."
-    ],
-    "What was suspicious?": [
-      "Strange behavior.",
-      "Odd sounds.",
-      "Missing item.",
-      "Locked door.",
-      "Running person.",
-      "Broken item.",
-      "Silent area.",
-      "Nothing."
-    ],
-    "Did you report it?": [
-      "Yes.",
-      "No.",
-      "Not sure.",
-      "Later.",
-      "Immediately.",
-      "Didn't report.",
-      "Reported to security.",
-      "No."
-    ]
-  };
-  if (clueTemplates[questionText]) {
-    return `Clue: ${clueTemplates[questionText][suspectIdx]}`;
+  if (!clueTemplates[difficulty]) {
+    return `Clue: [invalid difficulty]`;
+  }
+  
+  const difficultySet = clueTemplates[difficulty];
+  
+  const cluesForQuestion = difficultySet?.[questionText];
+
+  if (
+    cluesForQuestion && cluesForQuestion[suspectIdx] !== undefined
+  ) {
+    return `Clue: ${cluesForQuestion[suspectIdx]}`;
   }
   return `Clue: [generic answer to "${questionText}"]`;
 }
@@ -695,20 +1119,27 @@ replayBtn.onclick = () => startGame();
 
 // --- Game Setup ---
 function startGame() {
-  attempts = 3;
+  attempts = difficulty === "easy" ? 3 : 2; // optional difficulty tuning
   clues = [];
   questionsAsked = 0;
   gameOver = false;
   startTime = Date.now();
+  
   scoreDiv.textContent = "";
   timerDiv.textContent = "";
   attemptsDiv.textContent = "";
   cluesDiv.innerHTML = "";
+  
+  currentQuestions = gameData[difficulty].questions;
+  currentSuspects = gameData[difficulty].suspects;
+  
   // Only primary questions at start
-  availableQuestions = questions.map((q) => ({ ...q, unlocks: q.unlocks }));
-  correctSuspectIndex = Math.floor(Math.random() * suspects.length);
-  checkedSuspects = Array(suspects.length).fill(false);
-  disabledSuspects = Array(suspects.length).fill(false);
+  availableQuestions = currentQuestions.map((q) => ({ ...q, unlocks: q.unlocks }));
+  
+  correctSuspectIndex = Math.floor(Math.random() * currentSuspects.length);
+  
+  checkedSuspects = Array(currentSuspects.length).fill(false);
+  disabledSuspects = Array(currentSuspects.length).fill(false);
   questionSequence = [];
 
   renderQuestions();
@@ -759,6 +1190,7 @@ function sendGameData() {
   formData.append("result", gameResult);
   formData.append("attempts_used", 3 - attempts);
   formData.append("stars", starsEarned);
+  formData.append("difficulty", difficulty);
 
   fetch(
     "https://script.google.com/macros/s/AKfycbw3nyBLcwM5DSZXymMqzBtExM-S84q1ibFojqIlKGW8dREdfdgldlJ77b-nr1QRWNpx/exec",
@@ -782,19 +1214,73 @@ function fetchLeaderboard(callback) {
 }
 
 function showLeaderboard() {
-  document.getElementById("leaderboard").innerHTML =
+  const leaderboardDiv = document.getElementById("leaderboard");
+  leaderboardDiv.innerHTML =
     "<div style='padding: 30px 0; font-size: 1.2em; color: #888;'>Loading...</div>";
-  let html = "<ol>";
+
   fetchLeaderboard(function (data) {
     if (!data || !data.length) {
-      document.getElementById("leaderboard").innerHTML =
+      leaderboardDiv.innerHTML =
         "<div style='padding: 30px 0; font-size: 1.1em; color: #b00;'>No leaderboard data yet.</div>";
       return;
     }
-    data.slice(0, 10).forEach((entry) => {
-      html += `<li><b>${entry.nickname}</b> - ${entry.stars} ⭐ - ${entry.score} questions - ${entry.timetaken}s - ${entry.attempts_used} attempt(s) </li>`;
+
+    // 🔥 Group by difficulty
+    leaderboardData = {};
+
+    data.forEach((entry) => {
+      const diff = entry.difficulty || "unknown";
+
+      if (!leaderboardData[diff]) {
+        leaderboardData[diff] = [];
+      }
+
+      leaderboardData[diff].push(entry);
     });
-    html += "</ol>";
-    document.getElementById("leaderboard").innerHTML = html;
+
+    leaderboardDifficulties = Object.keys(leaderboardData);
+
+    if (!leaderboardDifficulties.length) {
+      leaderboardDiv.innerHTML = "No difficulty data found.";
+      return;
+    }
+
+    currentLeaderboardIndex = 0;
+
+    renderCurrentLeaderboard();
   });
+}
+
+function renderCurrentLeaderboard() {
+  const leaderboardDiv = document.getElementById("leaderboard");
+  const label = document.getElementById("leaderboard-difficulty-label");
+
+  const currentDifficulty =
+    leaderboardDifficulties[currentLeaderboardIndex];
+
+  label.textContent = currentDifficulty.toUpperCase();
+
+  const entries = leaderboardData[currentDifficulty];
+
+  if (!entries || !entries.length) {
+    leaderboardDiv.innerHTML = "<div>No players in this difficulty yet.</div>";
+    return;
+  }
+
+  let html = "<ol>";
+
+  entries.slice(0, 10).forEach((entry) => {
+    html += `
+      <li>
+        <b>${entry.nickname}</b> 
+        - ${entry.stars} ⭐ 
+        - ${entry.score} questions 
+        - ${entry.timetaken}s 
+        - in ${entry.attempts_used} attempt(s)
+      </li>`;
+  });
+
+  html += "</ol>";
+
+  leaderboardDiv.innerHTML = html;
 }
