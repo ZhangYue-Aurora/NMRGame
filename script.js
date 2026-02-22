@@ -8,16 +8,6 @@ function showScreen(screenId) {
   document.getElementById("end-screen").style.display = "none";
   document.getElementById(screenId).style.display = "block";
 }
-function showLeaderboard() {
-  fetchLeaderboard(function (data) {
-    let html = " ";
-    data.slice(0, 10).forEach((entry) => {
-      html += `<li><b>${entry.nickname}</b> - ${entry.score} questions - ${entry.timetaken}s - ${entry.attempts_used} attempt(s) </li>`;
-    });
-    html += "</ol>";
-    document.getElementById("leaderboard").innerHTML = html;
-  });
-}
 
 // --- Button Event Listeners ---
 // Show nickname screen after title
@@ -752,6 +742,7 @@ function sendGameData() {
   formData.append("question_sequence", questionSequence.join(" | "));
   formData.append("result", gameResult);
   formData.append("attempts_used", 3 - attempts);
+  formData.append("stars", starsEarned);
 
   fetch(
     "https://script.google.com/macros/s/AKfycbw3nyBLcwM5DSZXymMqzBtExM-S84q1ibFojqIlKGW8dREdfdgldlJ77b-nr1QRWNpx/exec",
@@ -772,4 +763,22 @@ function fetchLeaderboard(callback) {
   )
     .then((res) => res.json())
     .then((data) => callback(data));
+}
+
+function showLeaderboard() {
+  document.getElementById("leaderboard").innerHTML =
+    "<div style='padding: 30px 0; font-size: 1.2em; color: #888;'>Loading...</div>";
+  let html = "<ol>";
+  fetchLeaderboard(function (data) {
+    if (!data || !data.length) {
+      document.getElementById("leaderboard").innerHTML =
+        "<div style='padding: 30px 0; font-size: 1.1em; color: #b00;'>No leaderboard data yet.</div>";
+      return;
+    }
+    data.slice(0, 10).forEach((entry) => {
+      html += `<li><b>${entry.nickname}</b> - ${entry.stars} ⭐ - ${entry.score} questions - ${entry.timetaken}s - ${entry.attempts_used} attempt(s) </li>`;
+    });
+    html += "</ol>";
+    document.getElementById("leaderboard").innerHTML = html;
+  });
 }

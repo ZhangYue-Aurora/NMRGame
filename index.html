@@ -9,117 +9,88 @@
   </head>
     
   <body>
-  <html lang="en">
+  <!-- Title Screen -->
+<div id="title-screen">
+  <img src="images/title.png" alt="Guess Who?" id="title-image" />
+  <div class="title-buttons">
+    <button id="start-btn">Start</button>
+  </div>
+</div>
 
-<head>
-  <meta charset="UTF-8">
-  <title>NMR Game</title>
-  <link rel="stylesheet" href="./style.css">
+<!-- Nickname Screen -->
+<div id="nickname-screen" style="display:none;">
+  <h2>Enter Your Nickname</h2>
+  <input id="nickname-input" type="text" maxlength="20" placeholder="Your nickname" style="font-size:16px; padding:8px;">
+  <br><br>
+  <div class="nickname-buttons">
+    <button id="nickname-submit-btn">Continue</button>
+    <button id="nickname-to-title-btn">Back</button>
+  </div>
+</div>
 
-</head>
+<!-- Mode Selection Screen -->
+<div id="mode-screen" style="display:none;">
+  <h2>Select Difficulty</h2>
+  <div class="mode-buttons">
+    <button id="easy-btn">Easy</button>
+    <button id="hard-btn">Hard</button>
+    <button id="leaderboard-btn">Leaderboard</button>
+    <button id="back-to-title-btn">Back</button>
+  </div>
+</div>
 
-<body>
-  <html lang="en">
+<!-- Main Game Screen -->
+<div id="game-screen" style="display:none;">
+  <div class="game-layout">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>NMR Game</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <!-- LEFT SIDE: suspects + attempts + clues -->
+    <div class="left-panel">
+      <div id="suspects-grid"></div>
 
-  </head>
+      <div id="attempts-wrapper">
+        <div id="attempts"></div>
+      </div>
 
-  <body>
-    <!-- Title Screen -->
-    <div id="title-screen">
-      <img src="images/title.png" alt="Guess Who?" id="title-image" />
-      <div class="title-buttons">
-        <button id="start-btn">Start</button>
+      <div id="clues-wrapper">
+        <div id="clues"></div>
       </div>
     </div>
 
-    <!-- Nickname Screen -->
-    <div id="nickname-screen" style="display:none;">
-      <h2>Enter Your Nickname</h2>
-      <input id="nickname-input" type="text" maxlength="20" placeholder="Your nickname" style="font-size:16px; padding:8px;">
-      <br><br>
-      <div class="nickname-buttons">
-        <button id="nickname-submit-btn">Continue</button>
-        <button id="nickname-to-title-btn">Back</button>
+    <!-- RIGHT SIDE: timer + score + questions -->
+    <div class="right-panel">
+      <div class="top-info">
+        <div id="timer"></div>
+        <div id="score"></div>
       </div>
+      <div id="questions"></div>
     </div>
+  </div>
 
-    <!-- Mode Selection Screen -->
-    <div id="mode-screen" style="display:none;">
-      <h2>Select Difficulty</h2>
-      <div class="mode-buttons">
-        <button id="easy-btn">Easy</button>
-        <button id="hard-btn">Hard</button>
-        <button id="leaderboard-btn">Leaderboard</button>
-        <button id="back-to-title-btn">Back</button>
-      </div>
-    </div>
+  <!-- Bottom buttons (can be repositioned later) -->
+  <div class="bottom-controls">
+    <button id="replay-btn">Replay Game</button>
+    <button id="back-to-mode-btn">Back</button>
+  </div>
+</div>
 
-    <!-- Main Game Screen -->
-    <div id="game-screen" style="display:none;">
-      <div class="game-layout">
+<!-- Leaderboard Screen -->
+<div id="leaderboard-screen" style="display:none;">
+  <h2>✨Top 10 Players✨</h2>
+  <div id="leaderboard"></div>
+  <button id="back-to-mode-btn2">Back</button>
+</div>
 
-        <!-- LEFT SIDE: suspects + attempts + clues -->
-        <div class="left-panel">
-          <div id="suspects-grid"></div>
-
-          <div id="attempts-wrapper">
-            <div id="attempts"></div>
-          </div>
-
-          <div id="clues-wrapper">
-            <div id="clues"></div>
-          </div>
-        </div>
-
-        <!-- RIGHT SIDE: timer + score + questions -->
-        <div class="right-panel">
-          <div class="top-info">
-            <div id="timer"></div>
-            <div id="score"></div>
-          </div>
-          <div id="questions"></div>
-        </div>
-      </div>
-
-      <!-- Bottom buttons (can be repositioned later) -->
-      <div class="bottom-controls">
-        <button id="replay-btn">Replay Game</button>
-        <button id="back-to-mode-btn">Back</button>
-      </div>
-    </div>
-
-    <!-- Leaderboard Screen -->
-    <div id="leaderboard-screen" style="display:none;">
-      <h2>Leaderboard (Top 10)</h2>
-      <div id="leaderboard"></div>
-      <button id="back-to-mode-btn2">Back</button>
-    </div>
-
-    <!-- End Screen -->
-    <div id="end-screen" style="display:none;">
-      <h2>Round Finished!</h2>
-      <div id="end-stars"></div>
-      <div id="end-summary"></div>
-      <button id="end-replay-btn">Play Again</button>
-      <button id="end-leaderboard-btn">View Leaderboard</button>
-      <button id="end-mode-btn">Mode Selection</button>
-    </div>
-    <script src="./script.js"></script>
-
-  </body>
-
-  </html>
-  <script src="./script.js"></script>
-
-</body>
-
-</html>
+<!-- End Screen -->
+<div id="end-screen" style="display:none;">
+  <h2>Round Finished!</h2>
+  <div id="end-stars"></div>
+  <div id="end-summary"></div>
+  <div class="end-buttons">
+    <button id="end-replay-btn">Play Again</button>
+    <button id="end-leaderboard-btn">View Leaderboard</button>
+    <button id="end-mode-btn">Mode Selection</button>
+  </div>
+</div>
     <script  src="./script.js"></script>
 
   </body>
