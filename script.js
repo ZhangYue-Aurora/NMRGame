@@ -284,8 +284,8 @@ const gameData = {
       { name: "hard-suspect-4", image: "images/suspect4-front.png" },
       { name: "hard-suspect-5", image: "images/suspect5-front.png" },
       { name: "hard-suspect-6", image: "images/suspect6-front.png" },
-      { name: "hard-suspect-7", image: "images/suspect5-front.png" },
-      { name: "hard-suspect-8", image: "images/suspect6-front.png" }
+      { name: "hard-suspect-7", image: "images/suspect7-front.png" },
+      { name: "hard-suspect-8", image: "images/suspect8-front.png" }
     ]
   }
 }
