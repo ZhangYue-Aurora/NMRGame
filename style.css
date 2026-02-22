@@ -7,8 +7,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
-  max-width: 1000px;
+  min-width: 600px;
+  max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
   padding: 20px;
@@ -61,8 +61,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
-  max-width: 1000px;
+  min-width: 600px;
+  max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
   padding: 20px;
@@ -124,8 +124,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
-  max-width: 1000px;
+  min-width: 600px;
+  max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
   padding: 20px;
@@ -174,8 +174,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
-  max-width: 1000px;
+  min-width: 600px;
+  max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
   padding: 20px;
@@ -251,13 +251,23 @@ body {
   transform: translateY(-1px);
 }
 
-#title-screen,
-#nickname-screen,
-#end-screen,
+#end-screen {
+  min-width: 600px;
+  max-width: 800px;
+  min-height: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #c0e7ff; /* light blue like your sketch */
+  border-radius: 12px;
+  box-shadow: 0 0 10px #8bb6da;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
 /* Overall game container */
 
 #game-screen {
-  min-width: 700px;
+  min-width: 600px;
   max-width: 1000px;
   min-height: 600px;
   margin: 20px auto;
@@ -272,16 +282,28 @@ body {
 
 /* Two-column main layout */
 .game-layout {
-  display: grid;
-  grid-template-columns: 2fr 1.3fr; /* left : right width ratio */
+  display: flex;
+  flex-direction: row; /* desktop default */
   gap: 20px;
+  align-items: flex-start;
 }
 
-/* LEFT PANEL: suspects + attempts + clues */
-.left-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+/* Panels share width on desktop */
+.left-panel,
+.right-panel {
+  flex: 1;
+}
+
+/* 🔥 MOBILE BREAKPOINT */
+@media (max-width: 768px) {
+  .game-layout {
+    flex-direction: column; /* stack vertically */
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+  }
 }
 
 /* 2 rows × 4 columns suspect grid */
