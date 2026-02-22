@@ -115,6 +115,7 @@ body {
 #nickname-screen h2 {
   margin-bottom: 32px;
   font-size: 1.8em;
+  margin-top: 120px;
   color: #2a6fb8;
   text-align: center;
 }
@@ -165,6 +166,7 @@ body {
 #mode-screen h2 {
   margin-bottom: 32px;
   font-size: 1.8em;
+  margin-top: 100px;
   color: #2a6fb8;
   text-align: center;
 }
