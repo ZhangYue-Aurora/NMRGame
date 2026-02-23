@@ -391,8 +391,9 @@ body {
 
 /* card button */
 .suspect-card {
-  width: 110px;
-  height: 140px;
+  width: 100%;
+  max-width: 110px;
+  aspect-ratio: 11 / 14;
   border: none;
   background: transparent;
   cursor: pointer;
