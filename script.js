@@ -6,6 +6,7 @@ function showScreen(screenId) {
   document.getElementById("game-screen").style.display = "none";
   document.getElementById("leaderboard-screen").style.display = "none";
   document.getElementById("end-screen").style.display = "none";
+  document.getElementById("tutorial-screen").style.display = "none";
   document.getElementById(screenId).style.display = "block";
 }
 
@@ -34,7 +35,7 @@ document.getElementById("nickname-submit-btn").onclick = () => {
     alert("Please enter a nickname!");
     return;
   }
-  showScreen("mode-screen");
+  showTutorial();
 };
 document.getElementById("easy-btn").onclick = () => {
   difficulty = "easy";
@@ -76,6 +77,29 @@ document.getElementById("leaderboard-next").onclick = () => {
   }
 
   renderCurrentLeaderboard();
+};
+
+document.getElementById("tutorial-prev").onclick = () => {
+  if (currentTutorialIndex > 0) {
+    currentTutorialIndex--;
+    renderTutorialPage();
+  }
+};
+
+document.getElementById("tutorial-next").onclick = () => {
+  if (currentTutorialIndex < tutorialPages.length - 1) {
+    currentTutorialIndex++;
+    renderTutorialPage();
+  }
+};
+
+document.getElementById("tutorial-skip-btn").onclick = () => {
+  showScreen("mode-screen"); 
+  // or wherever you want them to go after skipping
+};
+
+document.getElementById("tutorial-btn").onclick = () => {
+  showTutorial();
 };
 
 // On page load, show the title screen
@@ -878,6 +902,14 @@ let difficulty = "easy";
 let leaderboardData = {};
 let leaderboardDifficulties = [];
 let currentLeaderboardIndex = 0;
+let tutorialPages = [
+  "images/tutorial-1.png",
+  "images/tutorial-2.png",
+  "images/tutorial-3.png",
+  "images/tutorial-4.png",
+  "images/tutorial-5.png"
+];
+let currentTutorialIndex = 0;
 
 // --- UI Elements ---
 const questionsDiv = document.getElementById("questions");
@@ -1283,4 +1315,26 @@ function renderCurrentLeaderboard() {
   html += "</ol>";
 
   leaderboardDiv.innerHTML = html;
+}
+
+function showTutorial() {
+  showScreen("tutorial-screen"); // assuming you already use this
+  renderTutorialPage();
+}
+
+function renderTutorialPage() {
+  const img = document.getElementById("tutorial-image");
+  const indicator = document.getElementById("tutorial-page-indicator");
+
+  img.src = tutorialPages[currentTutorialIndex];
+
+  indicator.textContent =
+    `${currentTutorialIndex + 1} / ${tutorialPages.length}`;
+
+  // Disable arrows at edges (optional but nice UX)
+  document.getElementById("tutorial-prev").disabled =
+    currentTutorialIndex === 0;
+
+  document.getElementById("tutorial-next").disabled =
+    currentTutorialIndex === tutorialPages.length - 1;
 }
