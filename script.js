@@ -315,16 +315,11 @@ const gameData = {
 }
 const clueTemplates = {
     easy: {
-    "easy-question-1": [
-      "easy-clue-1-1",
-      "easy-clue-1-2",
-      "easy-clue-1-3",
-      "easy-clue-1-4",
-      "easy-clue-1-5",
-      "easy-clue-1-6",
-      "easy-clue-1-7",
-      "easy-clue-1-8"
-    ],
+    "easy-question-1": {
+      type: "count",
+      values: [1, 2, 3, 4, 5, 6, 7, 8],
+      template: "easy-clue-1-{n} There {isAre} {n} item{s}."
+    },
     "easy-question-2": [
       "easy-clue-2-1",
       "easy-clue-2-2",
@@ -934,7 +929,9 @@ function renderQuestions() {
   questionsDiv.innerHTML = "";
   availableQuestions.forEach((qObj) => {
     const btn = document.createElement("button");
-    btn.textContent = qObj.text;
+    const unlockCount = qObj.unlocks ? qObj.unlocks.length : 0;
+    const stars = unlockCount > 0 ? "✦".repeat(unlockCount) + " " : "";
+    btn.textContent = stars + qObj.text;
     btn.className = "question-btn";
     // Add a class for the tier
     if (qObj.tier === "primary") btn.classList.add("primary");
@@ -1064,14 +1061,27 @@ function getClue(questionText, suspectIdx) {
   
   const difficultySet = clueTemplates[difficulty];
   
-  const cluesForQuestion = difficultySet?.[questionText];
+    const clueData = difficultySet[questionText];
+  if (!clueData) return `Clue: [generic answer to "${questionText}"]`;
 
-  if (
-    cluesForQuestion && cluesForQuestion[suspectIdx] !== undefined
-  ) {
-    return `Clue: ${cluesForQuestion[suspectIdx]}`;
+  // 🔥 CASE 1: Normal array (your current structure)
+  if (Array.isArray(clueData)) {
+    return `Clue: ${clueData[suspectIdx]}`;
   }
-  return `Clue: [generic answer to "${questionText}"]`;
+
+  // 🔥 CASE 2: Count template structure
+  if (clueData.type === "count") {
+    const n = clueData.values[suspectIdx];
+    let sentence = clueData.template
+    .replace("{n}", n)
+    .replace("{n}", n)
+    .replace("{isAre}", n === 1 ? "is" : "are")
+    .replace("{s}", n === 1 ? "" : "s");
+
+  return `Clue: ${sentence}`;
+  }
+
+  return `Clue: [unknown clue format]`;
 }
 
 // --- Guess Suspect Logic ---
