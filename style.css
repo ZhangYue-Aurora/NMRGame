@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
+  min-width: 390px;
   max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
@@ -61,7 +61,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
+  min-width: 390px;
   max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
@@ -125,7 +125,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
+  min-width: 390px;
   max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
@@ -176,7 +176,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 700px;
+  min-width: 390px;
   max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
@@ -255,7 +255,7 @@ body {
 
 #end-screen,
 #tutorial-screen {
-  min-width: 700px;
+  min-width: 390px;
   max-width: 800px;
   min-height: 600px;
   margin: 20px auto;
@@ -335,7 +335,7 @@ body {
 /* Overall game container */
 
 #game-screen {
-  min-width: 500px;
+  min-width: 390px;
   max-width: 1000px;
   min-height: 600px;
   margin: 20px auto;
@@ -637,13 +637,7 @@ body {
   vertical-align: middle;
 }
 
-#end-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-}
+
 
 #end-screen h2 {
   text-align: center;

@@ -1114,7 +1114,7 @@ function guessSuspect(idx) {
       showEndScreen(false); // lose
       sendGameData();
     } else {
-      attemptsDiv.textContent = `Attempts left: ${attempts} Sorry, wrong suspect! `;
+      attemptsDiv.textContent = `Attempts left: ${attempts} Sorry, wrong suspect!`;
     }
   }
 }
@@ -1318,6 +1318,7 @@ function renderCurrentLeaderboard() {
 }
 
 function showTutorial() {
+  currentTutorialIndex = 0;
   showScreen("tutorial-screen"); // assuming you already use this
   renderTutorialPage();
 }
