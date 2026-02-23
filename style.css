@@ -775,3 +775,52 @@ body {
   height: auto;
   object-fit: contain;
 }
+
+.difficulty-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+@keyframes popupScale {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.difficulty-popup-content {
+  animation: popupScale 0.2s ease;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.popup-buttons {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}.popup-buttons button {
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid #2a6fb8;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  font-weight: 500;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  max-width: 200px;
+}
+.popup-buttons button:hover {
+  background: #e0f1ff;
+  transform: translateY(-1px);
+}

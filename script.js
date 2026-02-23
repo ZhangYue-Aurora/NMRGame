@@ -38,14 +38,11 @@ document.getElementById("nickname-submit-btn").onclick = () => {
   showTutorial();
 };
 document.getElementById("easy-btn").onclick = () => {
-  difficulty = "easy";
-  showScreen("game-screen");
-  startGame();
+  showDifficultyPopup("easy");
 };
+
 document.getElementById("hard-btn").onclick = () => {
-  difficulty = "hard";
-  showScreen("game-screen");
-  startGame();
+  showDifficultyPopup("hard");
 };
 document.getElementById("back-to-title-btn").onclick = () =>
   showScreen("title-screen");
@@ -2073,7 +2070,7 @@ function showEndScreen(win) {
 
   // Display stars
   document.getElementById("end-stars").textContent =
-    "★".repeat(starsEarned) + "☆".repeat(3 - starsEarned);
+    "⭐".repeat(starsEarned) + "☆".repeat(3 - starsEarned);
 
   // Summary
   document.getElementById("end-summary").innerHTML =
@@ -2180,10 +2177,14 @@ function renderCurrentLeaderboard() {
   let html = "<ol>";
 
   entries.slice(0, 10).forEach((entry) => {
+    const filled = "⭐".repeat(entry.stars);
+    const empty = "☆".repeat(3 - entry.stars);
+    const starsDisplay = filled + empty;
+    
     html += `
       <li>
         <b>${entry.nickname}</b> 
-        - ${entry.stars} ⭐ 
+        - ${starsDisplay} 
         - ${entry.score} questions 
         - ${entry.timetaken}s 
         - in ${entry.attempts_used} attempt(s)
@@ -2232,4 +2233,32 @@ function showCorrectSuspectImages() {
 
   normalImg.alt = correct.name;
   caughtImg.alt = correct.name + " caught";
+}
+
+function showDifficultyPopup(selectedDifficulty) {
+  const settings = starRequirements[selectedDifficulty];
+
+  const minutes = settings.maxTime / 60;
+
+  document.getElementById("popup-title").textContent =
+    selectedDifficulty.toUpperCase() + " Mode - Goals to 3 Star";
+
+  document.getElementById("popup-requirements").innerHTML = `
+    ⭐ Correctly identify the molecule<br>
+    ⭐ Finish under <b>${minutes} minutes</b><br>
+    ⭐ Ask no more than <b>${settings.maxQuestions} questions</b><br>   
+  `;
+
+  document.getElementById("difficulty-popup").style.display = "flex";
+
+  document.getElementById("popup-start-btn").onclick = () => {
+    difficulty = selectedDifficulty;
+    document.getElementById("difficulty-popup").style.display = "none";
+    showScreen("game-screen");
+    startGame();
+  };
+
+  document.getElementById("popup-cancel-btn").onclick = () => {
+    document.getElementById("difficulty-popup").style.display = "none";
+  };
 }
