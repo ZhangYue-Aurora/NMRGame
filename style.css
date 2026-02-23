@@ -705,7 +705,7 @@ body {
   margin-top: 24px;
 }
 .end-buttons button {
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 18px;
   border-radius: 8px;
   border: 2px solid #2a6fb8;
@@ -763,11 +763,13 @@ body {
 }
 #correct-normal-img {
   max-width: 100px;
+  width: auto;
   height: auto;
   object-fit: contain;
 }
 #correct-caught-img {
   max-width: 200px;
+  width: auto;
   height: auto;
   object-fit: contain;
 }
