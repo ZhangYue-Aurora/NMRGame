@@ -684,7 +684,7 @@ body {
   border-color: #66aaa9;
 }
 .question-btn.tertiary:hover {
-  background: #66b2c0;
+  background: #66aaa9;
   transform: translateY(-1px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
