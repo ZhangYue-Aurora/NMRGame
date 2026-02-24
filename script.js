@@ -41,10 +41,16 @@ document.getElementById("nickname-submit-btn").onclick = () => {
 document.getElementById("easy-btn").onclick = () => {
   showDifficultyPopup("easy");
 };
-
+document.getElementById("normal-btn").onclick = () => {
+  showDifficultyPopup("normal");
+};
 document.getElementById("hard-btn").onclick = () => {
   showDifficultyPopup("hard");
 };
+document.getElementById("expert-btn").onclick = () => {
+  showDifficultyPopup("expert");
+};
+
 document.getElementById("back-to-title-btn").onclick = () =>
   showScreen("title-screen");
 document.getElementById("nickname-to-title-btn").onclick = () =>
@@ -728,7 +734,629 @@ const gameData = {
       { name: "easy-suspect-8", image: "images/easy-suspect8-front.png" }
     ]
   },
-
+  normal: {
+    questions: [
+      {
+        text: "1. How many signals are there?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "1.1. How many singlets are there?",
+            tier: "secondary",
+            unlocks: []
+          },
+          {
+            text: "1.2. How many doublets are there?",
+            tier: "secondary",
+            unlocks: []
+          },
+          {
+            text: "1.3. How many triplets are there?",
+            tier: "secondary",
+            unlocks: []
+          },
+          {
+            text:
+              "1.4. How many signals with higher than triplet multiplicity are there?",
+            tier: "secondary",
+            unlocks: []
+          }
+        ]
+      },
+      {
+        text: "2. What’s the total integration of all signals?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "2.1a. What’s the smallest integration of any one signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "2.1.1 How many signals have the smallest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "2.1.2 How many signals have the largest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "2.1b. What’s the largest integration of any one signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "2.1.1 How many signals have the smallest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "2.1.2 How many signals have the largest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "2.1c. How many different integration values are there?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "2.1.1 How many signals have the smallest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "2.1.2 How many signals have the largest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "3a. How many signals have chemical shift<6 ppm?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "3.1a. What’s the lowest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "3.1b. What’s the highest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "3b. How many signals have 6 ppm<chemical shift<9 ppm?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "3.1a. What’s the lowest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "3.1b. What’s the highest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "3c. How many signals have 9 ppm<chemical shift?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "3.1a. What’s the lowest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "3.1b. What’s the highest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "4a. What’s the lowest multiplicity in one signal?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "4.1. How many signals have only 1 J-value?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.1.1 What’s the lowest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.1.2 What’s the highest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "4.2. How many signals have more than 1 J-values?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.2.1 What’s the smallest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.2.2 What’s the largest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "4b. What’s the highest multiplicity in one signal?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "4.1. How many signals have only 1 J-value?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.1.1 What’s the lowest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.1.2 What’s the highest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "4.2. How many signals have more than 1 J-values?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.2.1 What’s the smallest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.2.2 What’s the largest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    suspects: [
+      { name: "normal-suspect-1", image: "images/normal-suspect1-front.png" },
+      { name: "normal-suspect-2", image: "images/normal-suspect2-front.png" },
+      { name: "normal-suspect-3", image: "images/normal-suspect3-front.png" },
+      { name: "normal-suspect-4", image: "images/normal-suspect4-front.png" },
+      { name: "normal-suspect-5", image: "images/normal-suspect5-front.png" },
+      { name: "normal-suspect-6", image: "images/normal-suspect6-front.png" },
+      { name: "normal-suspect-7", image: "images/normal-suspect7-front.png" },
+      { name: "normal-suspect-8", image: "images/normal-suspect8-front.png" }
+    ]
+  },
   hard: {
     questions: [
       {
@@ -1351,6 +1979,629 @@ const gameData = {
       { name: "hard-suspect-7", image: "images/hard-suspect7-front.png" },
       { name: "hard-suspect-8", image: "images/hard-suspect8-front.png" }
     ]
+  },
+  expert: {
+    questions: [
+      {
+        text: "1. How many signals are there?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "1.1. How many singlets are there?",
+            tier: "secondary",
+            unlocks: []
+          },
+          {
+            text: "1.2. How many doublets are there?",
+            tier: "secondary",
+            unlocks: []
+          },
+          {
+            text: "1.3. How many triplets are there?",
+            tier: "secondary",
+            unlocks: []
+          },
+          {
+            text:
+              "1.4. How many signals with higher than triplet multiplicity are there?",
+            tier: "secondary",
+            unlocks: []
+          }
+        ]
+      },
+      {
+        text: "2. What’s the total integration of all signals?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "2.1a. What’s the smallest integration of any one signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "2.1.1 How many signals have the smallest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "2.1.2 How many signals have the largest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "2.1b. What’s the largest integration of any one signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "2.1.1 How many signals have the smallest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "2.1.2 How many signals have the largest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "2.1c. How many different integration values are there?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "2.1.1 How many signals have the smallest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "2.1.2 How many signals have the largest integration value?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "3a. How many signals have chemical shift<6 ppm?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "3.1a. What’s the lowest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "3.1b. What’s the highest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "3b. How many signals have 6 ppm<chemical shift<9 ppm?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "3.1a. What’s the lowest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "3.1b. What’s the highest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "3c. How many signals have 9 ppm<chemical shift?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "3.1a. What’s the lowest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "3.1b. What’s the highest chemical shift of any signal?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text: "3.1.1. How many signals have chemical shift<2 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text: "3.1.11. How many signals have 11 ppm<chemical shift?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "4a. What’s the lowest multiplicity in one signal?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "4.1. How many signals have only 1 J-value?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.1.1 What’s the lowest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.1.2 What’s the highest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "4.2. How many signals have more than 1 J-values?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.2.1 What’s the smallest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.2.2 What’s the largest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        text: "4b. What’s the highest multiplicity in one signal?",
+        tier: "primary",
+        unlocks: [
+          {
+            text: "4.1. How many signals have only 1 J-value?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.1.1 What’s the lowest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.1.2 What’s the highest order of multiplicity for coupling to proton(s) in one environment in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          },
+          {
+            text: "4.2. How many signals have more than 1 J-values?",
+            tier: "secondary",
+            unlocks: [
+              {
+                text:
+                  "4.2.1 What’s the smallest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              },
+              {
+                text:
+                  "4.2.2 What’s the largest number of J-Values in one signal?",
+                tier: "tertiary",
+                unlocks: []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    suspects: [
+      { name: "expert-suspect-1", image: "images/expert-suspect1-front.png" },
+      { name: "expert-suspect-2", image: "images/expert-suspect2-front.png" },
+      { name: "expert-suspect-3", image: "images/expert-suspect3-front.png" },
+      { name: "expert-suspect-4", image: "images/expert-suspect4-front.png" },
+      { name: "expert-suspect-5", image: "images/expert-suspect5-front.png" },
+      { name: "expert-suspect-6", image: "images/expert-suspect6-front.png" },
+      { name: "expert-suspect-7", image: "images/expert-suspect7-front.png" },
+      { name: "expert-suspect-8", image: "images/expert-suspect8-front.png" }
+    ]
   }
 };
 const clueTemplates = {
@@ -1534,6 +2785,186 @@ const clueTemplates = {
       template: "4.2.2 The largest number of J-Values in one signal is {n}."
     }
   },
+  normal: {
+    "1. How many signals are there?": {
+      type: "count",
+      values: [4, 3, 1, 2, 3, 3, 4, 3],
+      template: "1. There {isAre} {n} signal{s} in total."
+    },
+    "2. What’s the total integration of all signals?": {
+      type: "count",
+      values: [10, 7, 8, 10, 8, 10, 8, 8],
+      template: "2. The total integration of all signal{s} is {n}."
+    },
+    "3a. How many signals have chemical shift<6 ppm?": {
+      type: "count",
+      values: [1, 3, 1, 1, 3, 1, 4, 3],
+      template: "3a. {n} signal{s} {hasHave} chemical shift<6 ppm."
+    },
+    "3b. How many signals have 6 ppm<chemical shift<9 ppm?": {
+      type: "count",
+      values: [3, 0, 0, 1, 0, 2, 0, 0],
+      template: "3b. {n} signal{s} {hasHave} 6 ppm<chemical shift<9 ppm."
+    },
+    "3c. How many signals have 9 ppm<chemical shift?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3c. {n} signal{s} {hasHave} 9 ppm<chemical shift."
+    },
+    "4a. What’s the lowest multiplicity in one signal?": {
+      type: "count",
+      values: [1, 1, 1, 1, 1, 1, 1, 1],
+      template: "4a. The lowest multiplicity in one signal is {n}."
+    },
+    "4b. What’s the highest multiplicity in one signal?": {
+      type: "count",
+      values: [3, 4, 1, 1, 4, 2, 6, 5],
+      template: "4b. The highest multiplicity in one signal is {n}."
+    },
+    "1.1. How many singlets are there?": {
+      type: "count",
+      values: [2, 1, 1, 2, 1, 1, 1, 1],
+      template: "1.1. There {isAre} {n} singlet{s}."
+    },
+    "1.2. How many doublets are there?": {
+      type: "count",
+      values: [1, 0, 0, 0, 0, 2, 0, 0],
+      template: "1.2. There {isAre} {n} doublet{s}."
+    },
+    "1.3. How many triplets are there?": {
+      type: "count",
+      values: [1, 1, 0, 0, 1, 0, 2, 1],
+      template: "1.3. There {isAre} {n} triplet{s}."
+    },
+    "1.4. How many signals with higher than triplet multiplicity are there?": {
+      type: "count",
+      values: [0, 1, 0, 0, 1, 0, 1, 1],
+      template:
+        "1.4. There {isAre} {n} signal{s} with higher than triplet multiplicity."
+    },
+    "2.1a. What’s the smallest integration of any one signal?": {
+      type: "count",
+      values: [1, 2, 8, 4, 2, 2, 1, 2],
+      template: "2.1a. The smallest integration of any one signal is {n}. "
+    },
+    "2.1b. What’s the largest integration of any one signal?": {
+      type: "count",
+      values: [6, 3, 8, 6, 3, 6, 3, 4],
+      template: "2.1b. The largest integration of any one signal is {n}. "
+    },
+    "2.1c. How many different integration values are there?": {
+      type: "count",
+      values: [3, 2, 1, 2, 2, 2, 3, 2],
+      template: "2.1c. There {isAre} {n} different integration value{s}."
+    },
+    "3.1a. What’s the lowest chemical shift of any signal?": {
+      type: "count",
+      values: [2.3, 1.2, 3.7, 2.2, 1.2, 2.2, 2.2, 1.7],
+      template: "3.1a. The lowest chemical shift of any signal is {n} ppm."
+    },
+    "3.1b. What’s the highest chemical shift of any signal?": {
+      type: "count",
+      values: [7.4, 4.3, 3.7, 7.0, 3.6, 7.2, 3.9, 4.7],
+      template: "3.1b. The highest chemical shift of any signal is {n} ppm."
+    },
+    "4.1. How many signals have only 1 J-value?": {
+      type: "count",
+      values: [2, 2, 0, 0, 2, 2, 2, 2],
+      template: "4.1. {n} signal{s} {hasHave} only 1 J-value."
+    },
+    "4.2. How many signals have more than 1 J-values?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 1, 0],
+      template: "4.2. {n} signal{s} {hasHave} more than 1 J-values."
+    },
+    "2.1.1 How many signals have the smallest integration value?": {
+      type: "count",
+      values: [2, 2, 1, 1, 1, 2, 1, 2],
+      template: "2.1.1 {n} signal{s} {hasHave} the smallest integration value."
+    },
+    "2.1.2 How many signals have the largest integration value?": {
+      type: "count",
+      values: [1, 1, 1, 1, 2, 1, 1, 1],
+      template: "2.1.2 {n} signal{s} {hasHave} the largest integration value."
+    },
+    "3.1.1. How many signals have chemical shift<2 ppm?": {
+      type: "count",
+      values: [0, 1, 0, 0, 1, 0, 0, 1],
+      template: "3.1.1. {n} signal{s} {hasHave} chemical shift<2 ppm."
+    },
+    "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?": {
+      type: "count",
+      values: [1, 0, 0, 1, 1, 1, 2, 0],
+      template: "3.1.2. {n} signal{s} {hasHave} 2 ppm<chemical shift<3 ppm."
+    },
+    "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?": {
+      type: "count",
+      values: [0, 0, 1, 0, 1, 0, 2, 1],
+      template: "3.1.3. {n} signal{s} {hasHave} 3 ppm<chemical shift<4 ppm."
+    },
+    "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?": {
+      type: "count",
+      values: [0, 2, 0, 0, 0, 0, 0, 1],
+      template: "3.1.4. {n} signal{s} {hasHave} 4 ppm<chemical shift<5 ppm."
+    },
+    "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.5. {n} signal{s} {hasHave} 5 ppm<chemical shift<6 ppm."
+    },
+    "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?": {
+      type: "count",
+      values: [1, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.6. {n} signal{s} {hasHave} 6 ppm<chemical shift<7 ppm."
+    },
+    "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?": {
+      type: "count",
+      values: [2, 0, 0, 1, 0, 2, 0, 0],
+      template: "3.1.7. {n} signal{s} {hasHave} 7 ppm<chemical shift<8 ppm."
+    },
+    "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.8. {n} signal{s} {hasHave} 8 ppm<chemical shift<9 ppm."
+    },
+    "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.9. {n} signal{s} {hasHave} 9 ppm<chemical shift<10 ppm."
+    },
+    "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.10. {n} signal{s} {hasHave} 10 ppm<chemical shift<11 ppm."
+    },
+    "3.1.11. How many signals have 11 ppm<chemical shift?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.11. {n} signal{s} {hasHave} 11 ppm<chemical shift."
+    },
+    "4.1.1 What’s the lowest order of multiplicity for coupling to proton(s) in one environment in one signal?": {
+      type: "count",
+      values: [2, 3, 1, 1, 3, 2, 2, 3],
+      template:
+        "4.1.1 The lowest order of multiplicity for coupling to proton{s} in one environment in one signal is {n}."
+    },
+    "4.1.2 What’s the highest order of multiplicity for coupling to proton(s) in one environment in one signal?": {
+      type: "count",
+      values: [3, 4, 1, 1, 4, 2, 3, 5],
+      template:
+        "4.1.2 The highest order of multiplicity for coupling to proton{s} in one environment in one signal is {n}."
+    },
+    "4.2.1 What’s the smallest number of J-Values in one signal?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "4.2.1 The smallest number of J-Values in one signal is {n}."
+    },
+    "4.2.2 What’s the largest number of J-Values in one signal?": {
+      type: "count",
+      values: [1, 1, 0, 0, 1, 1, 2, 1],
+      template: "4.2.2 The largest number of J-Values in one signal is {n}."
+    }
+  },
   hard: {
     "1. How many signals are there?": {
       type: "count",
@@ -1713,16 +3144,208 @@ const clueTemplates = {
       values: [1, 1, 1, 1, 1, 0, 1, 1],
       template: "4.2.2 The largest number of J-Values in one signal is {n}."
     }
+  },
+  expert: {
+    "1. How many signals are there?": {
+      type: "count",
+      values: [5, 5, 4, 2, 4, 5, 5, 4],
+      template: "1. There {isAre} {n} signal{s} in total."
+    },
+    "2. What’s the total integration of all signals?": {
+      type: "count",
+      values: [8, 9, 7, 7, 9, 11, 10, 8],
+      template: "2. The total integration of all signal{s} is {n}."
+    },
+    "3a. How many signals have chemical shift<6 ppm?": {
+      type: "count",
+      values: [5, 4, 3, 2, 2, 3, 5, 4],
+      template: "3a. {n} signal{s} {hasHave} chemical shift<6 ppm."
+    },
+    "3b. How many signals have 6 ppm<chemical shift<9 ppm?": {
+      type: "count",
+      values: [0, 1, 1, 0, 2, 2, 0, 0],
+      template: "3b. {n} signal{s} {hasHave} 6 ppm<chemical shift<9 ppm."
+    },
+    "3c. How many signals have 9 ppm<chemical shift?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3c. {n} signal{s} {hasHave} 9 ppm<chemical shift."
+    },
+    "4a. What’s the lowest multiplicity in one signal?": {
+      type: "count",
+      values: [3, 3, 3, 4, 1, 1, 2, 3],
+      template: "4a. The lowest multiplicity in one signal is {n}."
+    },
+    "4b. What’s the highest multiplicity in one signal?": {
+      type: "count",
+      values: [12, 6, 4, 14, 2, 4, 9, 9],
+      template: "4b. The highest multiplicity in one signal is {n}."
+    },
+    "1.1. How many singlets are there?": {
+      type: "count",
+      values: [0, 0, 0, 0, 1, 1, 0, 0],
+      template: "1.1. There {isAre} {n} singlet{s}."
+    },
+    "1.2. How many doublets are there?": {
+      type: "count",
+      values: [0, 0, 0, 0, 3, 2, 1, 0],
+      template: "1.2. There {isAre} {n} doublet{s}."
+    },
+    "1.3. How many triplets are there?": {
+      type: "count",
+      values: [1, 2, 1, 0, 0, 1, 2, 1],
+      template: "1.3. There {isAre} {n} triplet{s}."
+    },
+    "1.4. How many signals with higher than triplet multiplicity are there?": {
+      type: "count",
+      values: [4, 3, 3, 2, 0, 1, 2, 3],
+      template:
+        "1.4. There {isAre} {n} signal{s} with higher than triplet multiplicity."
+    },
+    "2.1a. What’s the smallest integration of any one signal?": {
+      type: "count",
+      values: [1, 1, 1, 1, 2, 2, 1, 1],
+      template: "2.1a. The smallest integration of any one signal is {n}. "
+    },
+    "2.1b. What’s the largest integration of any one signal?": {
+      type: "count",
+      values: [3, 3, 3, 6, 3, 3, 3, 3],
+      template: "2.1b. The largest integration of any one signal is {n}. "
+    },
+    "2.1c. How many different integration values are there?": {
+      type: "count",
+      values: [3, 3, 3, 2, 2, 2, 3, 3],
+      template: "2.1c. There {isAre} {n} different integration value{s}."
+    },
+    "3.1a. What’s the lowest chemical shift of any signal?": {
+      type: "count",
+      values: [0.8, 1.7, 1.2, 1.1, 2.2, 1.3, 1.6, 1.1],
+      template: "3.1a. The lowest chemical shift of any signal is {n} ppm."
+    },
+    "3.1b. What’s the highest chemical shift of any signal?": {
+      type: "count",
+      values: [5.8, 7.4, 7.4, 3.1, 7.3, 7.7, 5.6, 5.4],
+      template: "3.1b. The highest chemical shift of any signal is {n} ppm."
+    },
+    "4.1. How many signals have only 1 J-value?": {
+      type: "count",
+      values: [1, 2, 2, 0, 3, 4, 4, 2],
+      template: "4.1. {n} signal{s} {hasHave} only 1 J-value."
+    },
+    "4.2. How many signals have more than 1 J-values?": {
+      type: "count",
+      values: [4, 3, 2, 2, 0, 0, 1, 2],
+      template: "4.2. {n} signal{s} {hasHave} more than 1 J-values."
+    },
+    "2.1.1 How many signals have the smallest integration value?": {
+      type: "count",
+      values: [3, 2, 2, 1, 3, 4, 1, 1],
+      template: "2.1.1 {n} signal{s} {hasHave} the smallest integration value."
+    },
+    "2.1.2 How many signals have the largest integration value?": {
+      type: "count",
+      values: [1, 1, 1, 1, 1, 1, 1, 1],
+      template: "2.1.2 {n} signal{s} {hasHave} the largest integration value."
+    },
+    "3.1.1. How many signals have chemical shift<2 ppm?": {
+      type: "count",
+      values: [1, 1, 1, 1, 0, 1, 2, 1],
+      template: "3.1.1. {n} signal{s} {hasHave} chemical shift<2 ppm."
+    },
+    "3.1.2. How many signals have 2 ppm<chemical shift<3 ppm?": {
+      type: "count",
+      values: [1, 0, 0, 0, 1, 0, 0, 2],
+      template: "3.1.2. {n} signal{s} {hasHave} 2 ppm<chemical shift<3 ppm."
+    },
+    "3.1.3. How many signals have 3 ppm<chemical shift<4 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 1, 0, 0, 1, 0],
+      template: "3.1.3. {n} signal{s} {hasHave} 3 ppm<chemical shift<4 ppm."
+    },
+    "3.1.4. How many signals have 4 ppm<chemical shift<5 ppm?": {
+      type: "count",
+      values: [1, 1, 1, 0, 0, 1, 0, 0],
+      template: "3.1.4. {n} signal{s} {hasHave} 4 ppm<chemical shift<5 ppm."
+    },
+    "3.1.5. How many signals have 5 ppm<chemical shift<6 ppm?": {
+      type: "count",
+      values: [2, 0, 2, 0, 1, 1, 1, 1],
+      template: "3.1.5. {n} signal{s} {hasHave} 5 ppm<chemical shift<6 ppm."
+    },
+    "3.1.6. How many signals have 6 ppm<chemical shift<7 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 1, 0, 0],
+      template: "3.1.6. {n} signal{s} {hasHave} 6 ppm<chemical shift<7 ppm."
+    },
+    "3.1.7. How many signals have 7 ppm<chemical shift<8 ppm?": {
+      type: "count",
+      values: [0, 3, 1, 0, 2, 1, 0, 0],
+      template: "3.1.7. {n} signal{s} {hasHave} 7 ppm<chemical shift<8 ppm."
+    },
+    "3.1.8. How many signals have 8 ppm<chemical shift<9 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.8. {n} signal{s} {hasHave} 8 ppm<chemical shift<9 ppm."
+    },
+    "3.1.9. How many signals have 9 ppm<chemical shift<10 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.9. {n} signal{s} {hasHave} 9 ppm<chemical shift<10 ppm."
+    },
+    "3.1.10. How many signals have 10 ppm<chemical shift<11 ppm?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.10. {n} signal{s} {hasHave} 10 ppm<chemical shift<11 ppm."
+    },
+    "3.1.11. How many signals have 11 ppm<chemical shift?": {
+      type: "count",
+      values: [0, 0, 0, 0, 0, 0, 0, 0],
+      template: "3.1.11. {n} signal{s} {hasHave} 11 ppm<chemical shift."
+    },
+    "4.1.1 What’s the lowest order of multiplicity for coupling to proton(s) in one environment in one signal?": {
+      type: "count",
+      values: [2, 2, 2, 2, 2, 2, 2, 2],
+      template:
+        "4.1.1 The lowest order of multiplicity for coupling to proton{s} in one environment in one signal is {n}."
+    },
+    "4.1.2 What’s the highest order of multiplicity for coupling to proton(s) in one environment in one signal?": {
+      type: "count",
+      values: [4, 4, 4, 7, 2, 4, 4, 4],
+      template:
+        "4.1.2 The highest order of multiplicity for coupling to proton{s} in one environment in one signal is {n}."
+    },
+    "4.2.1 What’s the smallest number of J-Values in one signal?": {
+      type: "count",
+      values: [1, 1, 1, 2, 0, 0, 1, 1],
+      template: "4.2.1 The smallest number of J-Values in one signal is {n}."
+    },
+    "4.2.2 What’s the largest number of J-Values in one signal?": {
+      type: "count",
+      values: [3, 2, 2, 2, 1, 1, 2, 2],
+      template: "4.2.2 The largest number of J-Values in one signal is {n}."
+    }
   }
 };
 const starRequirements = {
   easy: {
     maxTime: 180, // 3 minutes
-    maxQuestions: 3
+    maxQuestions: 3,
+    attempts: 3
+  },
+  normal: {
+    maxTime: 240, // 4 minutes
+    maxQuestions: 4,
+    attempts: 2
   },
   hard: {
     maxTime: 300, // 5 minutes
-    maxQuestions: 6
+    maxQuestions: 5,
+    attempts: 2
+  },
+  expert: {
+    maxTime: 360, // 6 minutes
+    maxQuestions: 6,
+    attempts: 1
   }
 };
 
@@ -1837,7 +3460,9 @@ function renderSuspects() {
 
     const cardBackImages = {
       easy: "images/card-back-easy.png",
-      hard: "images/card-back-hard.png"
+      normal: "images/card-back-normal.png",
+      hard: "images/card-back-hard.png",
+      expert: "images/card-back-expert.png"
     };
 
     backImg.src = cardBackImages[difficulty] || "images/card-back.png";
@@ -2018,7 +3643,7 @@ replayBtn.onclick = () => startGame();
 
 // --- Game Setup ---
 function startGame() {
-  attempts = difficulty === "easy" ? 3 : 2; // optional difficulty tuning
+  attempts = starRequirements[difficulty].attempts;
   clues = [];
   questionsAsked = 0;
   gameOver = false;
@@ -2247,7 +3872,8 @@ function showDifficultyPopup(selectedDifficulty) {
   document.getElementById("popup-requirements").innerHTML = `
     ⭐ Correctly identify the molecule<br>
     ⭐ Finish under <b>${minutes} minutes</b><br>
-    ⭐ Ask no more than <b>${settings.maxQuestions} questions</b><br>   
+    ⭐ Ask no more than <b>${settings.maxQuestions} questions</b><br>
+    you have <b>${settings.attempts} attempt(s)</b>!
   `;
 
   document.getElementById("difficulty-popup").style.display = "flex";
@@ -2297,7 +3923,9 @@ function getAllGameImages() {
 
   // Card backs
   paths.push("images/card-back-easy.png");
+  paths.push("images/card-back-normal.png");
   paths.push("images/card-back-hard.png");
+  paths.push("images/card-back-expert.png");
 
   return paths.filter(Boolean);
 }

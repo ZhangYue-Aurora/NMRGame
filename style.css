@@ -206,6 +206,39 @@ body {
   background: #e0f1ff;
   transform: translateY(-1px);
 }
+#easy-btn {
+  background: #a0dec9;
+  border-color: #66aaa9;
+}
+#easy-btn:hover {
+  background: #66aaa9;
+}
+
+#normal-btn {
+  background: #8cbfe5;
+  border-color: #6f9ace;
+}
+#normal-btn:hover {
+  background: #6f9ace;
+}
+
+#hard-btn {
+  background: #b2bfe5;
+  border-color: #939ace;
+}
+#hard-btn:hover {
+  background: #939ace;
+}
+
+#expert-btn {
+  background: #d7a0cf;
+  border-color: #b96dae;
+}
+#expert-btn:hover {
+  background: #b96dae;
+}
+
+
 
 #mode-image {
   display: block;
@@ -622,11 +655,7 @@ body {
 }
 
 /* your existing “state” classes can still be used */
-.question-btn.greyed {
-  background: #bbb;
-  color: #444;
-  cursor: default;
-  box-shadow: none;
+
 }
 .question-btn.primary {
   background: #b2bfe5;
