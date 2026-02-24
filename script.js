@@ -3705,7 +3705,8 @@ function showEndScreen(win) {
       : `Sorry ${playerNickname}, you ran out of attempts :( `) +
     `<br>Questions asked: <b>${questionsAsked}</b>` +
     `<br>Time taken: <b>${((Date.now() - startTime) / 1000).toFixed(1)}s</b>` +
-    `<br>Attempts left: <b>${attempts}</b>`;
+    `<br>Attempts left: <b>${attempts}</b>` +
+    `<br><b>Please don't forget to complete the post-game survey afterwards, thank you so much :3</b>`;
 
   // Show the end screen
   showScreen("end-screen");
