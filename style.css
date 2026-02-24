@@ -532,7 +532,6 @@ body {
 /* Disabled styling */
 .suspect-card:disabled {
   cursor: default;
-  opacity: 0.75;
 }
 
 /* Checkbox */
@@ -656,6 +655,13 @@ body {
 
 /* your existing “state” classes can still be used */
 
+/* your existing “state” classes can still be used */
+.question-btn.greyed {
+  background: #bbb;
+  color: #444;
+  cursor: default;
+  box-shadow: none;
+}
 }
 .question-btn.primary {
   background: #b2bfe5;
