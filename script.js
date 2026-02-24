@@ -3750,6 +3750,7 @@ function fetchLeaderboard(callback) {
     .then((res) => res.json())
     .then((data) => callback(data));
 }
+const difficultyOrder = ["easy", "normal", "hard", "expert"];
 
 function showLeaderboard() {
   const leaderboardDiv = document.getElementById("leaderboard");
@@ -3776,7 +3777,11 @@ function showLeaderboard() {
       leaderboardData[diff].push(entry);
     });
 
-    leaderboardDifficulties = Object.keys(leaderboardData);
+        // 🔥 Force proper order instead of Object.keys()
+    leaderboardDifficulties = difficultyOrder.filter(
+      (diff) => leaderboardData[diff]
+    );
+
 
     if (!leaderboardDifficulties.length) {
       leaderboardDiv.innerHTML = "No difficulty data found.";
