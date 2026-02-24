@@ -3701,8 +3701,8 @@ function showEndScreen(win) {
   // Summary
   document.getElementById("end-summary").innerHTML =
     (win
-      ? `Yay! ${playerNickname}, you found the correct answer!`
-      : `Sorry ${playerNickname}, you ran out of attempts :( `) +
+      ? `<b>Yay! Congratulations ${playerNickname}, you found the correct answer!</b>`
+      : `<b>Sorry ${playerNickname}, you ran out of attempts :( </b>`) +
     `<br>Questions asked: <b>${questionsAsked}</b>` +
     `<br>Time taken: <b>${((Date.now() - startTime) / 1000).toFixed(1)}s</b>` +
     `<br>Attempts left: <b>${attempts}</b>` +
