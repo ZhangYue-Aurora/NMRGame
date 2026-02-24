@@ -3717,12 +3717,16 @@ function sendGameData() {
   console.log("sendGameData called");
 
   const formData = new URLSearchParams();
+  const maxAttempts = starRequirements[difficulty].attempts;
+  const attemptsUsed = maxAttempts - attempts;
+
+  
   formData.append("nickname", playerNickname);
   formData.append("score", questionsAsked);
   formData.append("timetaken", ((Date.now() - startTime) / 1000).toFixed(1));
   formData.append("question_sequence", questionSequence.join(" | "));
   formData.append("result", gameResult);
-  formData.append("attempts_used", 3 - attempts);
+  formData.append("attempts_used", attemptsUsed);
   formData.append("stars", starsEarned);
   formData.append("difficulty", difficulty);
 
