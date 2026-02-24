@@ -768,7 +768,7 @@ body {
   color: gold;
   margin-bottom: 0;
   box-shadow: none;
-  animation: starGlow 2s infinite ease-in-out;
+  animation: starGlow 1s infinite ease-in-out;
   background: transparent;
   padding-bottom: 0;
 }
