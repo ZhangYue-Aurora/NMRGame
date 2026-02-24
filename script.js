@@ -7,6 +7,7 @@ function showScreen(screenId) {
   document.getElementById("leaderboard-screen").style.display = "none";
   document.getElementById("end-screen").style.display = "none";
   document.getElementById("tutorial-screen").style.display = "none";
+  document.getElementById("loading-screen").style.display = "none";
   document.getElementById(screenId).style.display = "block";
 }
 
@@ -2180,7 +2181,7 @@ function renderCurrentLeaderboard() {
     const filled = "⭐".repeat(entry.stars);
     const empty = "☆".repeat(3 - entry.stars);
     const starsDisplay = filled + empty;
-    
+
     html += `
       <li>
         <b>${entry.nickname}</b> 
@@ -2262,3 +2263,52 @@ function showDifficultyPopup(selectedDifficulty) {
     document.getElementById("difficulty-popup").style.display = "none";
   };
 }
+
+function preloadImages(imagePaths) {
+  return Promise.all(
+    imagePaths.map((src) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = resolve;
+        img.onerror = resolve; // prevent hanging
+      });
+    })
+  );
+}
+
+function getAllGameImages() {
+  const paths = [];
+
+  Object.values(gameData).forEach((difficultyData) => {
+    difficultyData.suspects.forEach((suspect) => {
+      if (suspect.image) {
+        paths.push(suspect.image);
+      }
+
+      if (suspect.caughtImage) {
+        paths.push(suspect.caughtImage);
+      } else if (suspect.image) {
+        // Auto-generate caught version if you use that pattern
+        paths.push(suspect.image.replace("-front", "-caught"));
+      }
+    });
+  });
+
+  // Card backs
+  paths.push("images/card-back-easy.png");
+  paths.push("images/card-back-hard.png");
+
+  return paths.filter(Boolean);
+}
+
+window.addEventListener("load", async () => {
+  // Show loading screen first
+  showScreen("loading-screen");
+
+  // Preload everything
+  await preloadImages(getAllGameImages());
+
+  // After everything is cached, show mode selection
+  showScreen("title-screen");
+});
