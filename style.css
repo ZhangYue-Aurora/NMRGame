@@ -631,28 +631,6 @@ body {
   gap: 8px;
 }
 
-/* individual question buttons */
-.question-btn {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 10px 12px;
-  text-align: left;
-
-  background: #8ab1dc;
-  color: #183e70;
-  border-radius: 10px;
-  border: 3px solid #2a6fb8;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-.question-btn:hover {
-  background: #67a2dd;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-}
-
 /* your existing “state” classes can still be used */
 
 /* your existing “state” classes can still be used */
