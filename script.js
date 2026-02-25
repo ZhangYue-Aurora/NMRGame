@@ -3576,6 +3576,10 @@ function guessSuspect(idx) {
 
   if (!cardButton) return;
 
+  questionSequence.push(
+  `GUESS:${currentSuspects[idx].name}`
+);
+
   if (idx === correctSuspectIndex) {
     attempts -= 1;
     gameOver = true;
