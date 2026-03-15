@@ -3814,15 +3814,7 @@ function renderCurrentLeaderboard() {
   }
 
   // 🔥 Remove duplicate players (keep best one only)
-  const bestPerPlayer = [];
-  const seenPlayers = new Set();
-
-  entries.forEach((entry) => {
-    if (!seenPlayers.has(entry.nickname)) {
-      seenPlayers.add(entry.nickname);
-      bestPerPlayer.push(entry); // first occurrence = best (already sorted server-side)
-    }
-  });
+);
 
   let html = "<ol>";
 
