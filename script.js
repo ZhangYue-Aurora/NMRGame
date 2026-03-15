@@ -3813,20 +3813,10 @@ function renderCurrentLeaderboard() {
     return;
   }
 
-  // 🔥 Remove duplicate players (keep best one only)
-  const bestPerPlayer = [];
-  const seenPlayers = new Set();
-
-  entries.forEach((entry) => {
-    if (!seenPlayers.has(entry.nickname)) {
-      seenPlayers.add(entry.nickname);
-      bestPerPlayer.push(entry); // first occurrence = best (already sorted server-side)
-    }
-  });
 
   let html = "<ol>";
 
-  bestPerPlayer.slice(0, 10).forEach((entry) => {
+  entries.slice(0, 10).forEach((entry) => {
     const filled = "⭐".repeat(entry.stars);
     const empty = "☆".repeat(3 - entry.stars);
     const starsDisplay = filled + empty;
