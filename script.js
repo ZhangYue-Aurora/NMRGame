@@ -3811,10 +3811,7 @@ function renderCurrentLeaderboard() {
   if (!entries || !entries.length) {
     leaderboardDiv.innerHTML = "<div>No players in this difficulty yet.</div>";
     return;
-  }
-
-  // 🔥 Remove duplicate players (keep best one only)
-);
+  });
 
   let html = "<ol>";
 
