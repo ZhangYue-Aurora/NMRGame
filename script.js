@@ -3736,7 +3736,7 @@ function sendGameData() {
   formData.append("difficulty", difficulty);
 
   fetch(
-    "https://script.google.com/macros/s/AKfycbw3nyBLcwM5DSZXymMqzBtExM-S84q1ibFojqIlKGW8dREdfdgldlJ77b-nr1QRWNpx/exec",
+    "https://script.google.com/macros/s/AKfycbzdpuwJhyYQwGzt_qkmEaHQKE70jfpTem-rYFWINhsctbW6qR6OP6O-E1hkBTyHACTg/exec",
     {
       method: "POST",
       body: formData
@@ -3747,15 +3747,22 @@ function sendGameData() {
     .catch((err) => console.error("Send error:", err));
 }
 
+//ordering difficulties from easiest to hardest
+const difficultyOrder = {
+  1: "easy",
+  2: "normal",
+  3: "hard",
+  4: "expert"
+};
+
 // Fetch leaderboard data
 function fetchLeaderboard(callback) {
   fetch(
-    "https://script.google.com/macros/s/AKfycbw3nyBLcwM5DSZXymMqzBtExM-S84q1ibFojqIlKGW8dREdfdgldlJ77b-nr1QRWNpx/exec"
+    "https://script.google.com/macros/s/AKfycbzdpuwJhyYQwGzt_qkmEaHQKE70jfpTem-rYFWINhsctbW6qR6OP6O-E1hkBTyHACTg/exec"
   )
     .then((res) => res.json())
     .then((data) => callback(data));
 }
-const difficultyOrder = ["easy", "normal", "hard", "expert"];
 
 function showLeaderboard() {
   const leaderboardDiv = document.getElementById("leaderboard");
@@ -3763,30 +3770,18 @@ function showLeaderboard() {
     "<div style='padding: 30px 0; font-size: 1.2em; color: #888;'>Loading...</div>";
 
   fetchLeaderboard(function (data) {
-    if (!data || !data.length) {
+    if (!data || Object.keys(data).length === 0) {
       leaderboardDiv.innerHTML =
         "<div style='padding: 30px 0; font-size: 1.1em; color: #b00;'>No leaderboard data yet.</div>";
       return;
     }
 
     // 🔥 Group by difficulty
-    leaderboardData = {};
-
-    data.forEach((entry) => {
-      const diff = entry.difficulty || "unknown";
-
-      if (!leaderboardData[diff]) {
-        leaderboardData[diff] = [];
-      }
-
-      leaderboardData[diff].push(entry);
-    });
-
-        // 🔥 Force proper order instead of Object.keys()
-    leaderboardDifficulties = difficultyOrder.filter(
+    leaderboardData = data;
+    // 🔥 Force proper order instead of Object.keys()
+    leaderboardDifficulties = [1, 2, 3, 4].filter(
       (diff) => leaderboardData[diff]
     );
-
 
     if (!leaderboardDifficulties.length) {
       leaderboardDiv.innerHTML = "No difficulty data found.";
@@ -3794,7 +3789,8 @@ function showLeaderboard() {
     }
 
     currentLeaderboardIndex = 0;
-
+    
+   
     renderCurrentLeaderboard();
   });
 }
@@ -3804,29 +3800,23 @@ function renderCurrentLeaderboard() {
   const label = document.getElementById("leaderboard-difficulty-label");
 
   const currentDifficulty = leaderboardDifficulties[currentLeaderboardIndex];
-  label.textContent = currentDifficulty.toUpperCase();
-
+  label.textContent = difficultyOrder[currentDifficulty].toUpperCase();
+  
   const entries = leaderboardData[currentDifficulty];
-
+  
   if (!entries || !entries.length) {
     leaderboardDiv.innerHTML = "<div>No players in this difficulty yet.</div>";
     return;
   }
-    // 🔥 Remove duplicate players (keep best one only)
-  const bestPerPlayer = [];
-  const seenPlayers = new Set();
+  // 🔥 Remove duplicate players (keep best one only)
 
-  entries.forEach((entry) => {
-    if (!seenPlayers.has(entry.nickname)) {
-      seenPlayers.add(entry.nickname);
-      bestPerPlayer.push(entry); // first occurrence = best (already sorted server-side)
-    }
-  });
+  
 
 
+  
   let html = "<ol>";
 
-  bestPerPlayer.slice(0, 10).forEach((entry) => {
+  entries.forEach((entry) => {
     const filled = "⭐".repeat(entry.stars);
     const empty = "☆".repeat(3 - entry.stars);
     const starsDisplay = filled + empty;
