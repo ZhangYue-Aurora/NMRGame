@@ -2,4 +2,4 @@
 An NMR Spectroscopy Game   
 Created at Imperial College London under the supervision of Dr Euan D Doidge  
   
-- Legacy version from initial project creation in Jan 2026 
+- Legacy version from initial project release in Mar 2026 
